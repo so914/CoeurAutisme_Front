@@ -1,0 +1,34 @@
+.community-logo{
+    width:100px;
+    height: 100px;
+    overflow: hidden;
+    position: absolute;
+    top: 200px;
+    z-index: 1;
+    margin-left: 30px;
+    border: 4px solid var(--primary-dark);
+    border-radius: 50%;
+}
+.community-logo img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.img-author{
+    width:55px;
+    height: 55px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.img-author img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+[data-bs-theme="dark"].cart-community{
+  background-color: #1a2e22 !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}

@@ -1,0 +1,40 @@
+.card-color-text{
+    color:var(--primary-dark)
+}
+.db-body{
+    width: '280px';
+    min-height: '100vh'
+}
+
+.p-descr{
+    color: var(--primary-dark)
+}
+
+
+.active-custom {
+    background-color: #f8f9fa; 
+    border-left: 4px solid var(--primary-dark) !important; 
+    transition: all 0.2s ease-in-out;
+    color:rgb(99, 97, 97) !important;
+    border-radius:8px !important;
+}
+.text-warn{
+    background-color: #f8f9fa; 
+    justify-content: center;
+    text-align: justify;
+    padding: 5px;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 70% !important;
+    margin: auto;
+}
+.p-warn{
+    color: var(--primary-color) !important;
+}
+[data-bs-theme="dark"] .side-bar-diagnostic .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff !important;
+}
+.side-bar-diagnostic .nav-link:hover{
+    background-color: rgba(173, 216, 230, 0.247);
+}

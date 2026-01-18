@@ -1,0 +1,32 @@
+.login-card{ 
+    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAnQanf8S2QjgNoekRTtJv13DGn9nWjtbdsCaYV5bmTWrDbjKFyX7bs9EPQ5qzmDLUmNuU0ffXyXSRHihZb9zmHtVE78fs0KpPeR15L4vaCU1nnCyOqgd5E2hJPSZP41QHaCxDynvDmi6_E4vfRdfS8tUG3uAysHh1bOpi96MwTCr4fmnayQACP24Pt8qMI5t1fMQGiQAmv3KHzttfYnjLoj6fS5c9-bWmEJJP3IPHUfDATXnli62QT2Og_sh2v5Qmd45uZa5xXc5iC');
+    background-size: cover;
+    background-position: center;
+    height: 630px;
+    width: 100%
+}
+.texte-write{
+    margin-bottom: -60px;
+}
+[data-bs-theme='dark'] .card-form{
+    background-color: #1a2e22 !important;
+}
+[data-bs-theme='dark'] .separateur-form{
+    background-color: #1a2e22 !important;
+}
+.icone-bg{
+    background-color: rgb(163, 231, 163) !important;
+    border: var(--primary-color) 1px solid !important;
+}
+.icone-bg >span{
+    color: var(--primary-dark) !important;
+}
+
+.custom-pass-group .form-control:focus {
+    border-color: #dee2e6; }
+
+.custom-pass-group .btn {
+    border: 1px solid #dee2e6;
+    padding-right: 15px;
+}
+

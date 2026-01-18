@@ -1,0 +1,8 @@
+.side-bar{
+    width: 260px;
+    min-height: 100vh,;
+    background-color: var(--primary-dark)
+}
+[data-bs-theme="dark"].side-bar{
+    background-color: #1a2e22;
+}
