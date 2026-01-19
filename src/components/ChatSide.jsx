@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 const ChatSide = () => {
     return (
       <aside 
-        className="d-none d-lg-flex flex-column bg-white dg-body dark:bg-surface-dark border-end p-4 side-bar-diagnostic h-auto">
+        className="d-none d-lg-flex flex-column bg-background-light dark:bg-background-dark border-end p-4 side-bar-diagnostic h-auto" style={{height:"100vh", minWidth:"300px"}}>
   
         <div className='d-flex'>
-            <img className="logo-image d-inline-block align-top rounded-5" src="./ChatGPT Image 8 janv. 2026, 16_42_48.png" alt="logochat" style={{width:'60px',height:'60px'}}/>
+            <img className="logo-image d-inline-block align-top rounded-5" src="./ChatGPT Image 8 janv. 2026, 16_42_48.png" alt="logochat" style={{width:'55px',height:'55px'}}/>
             <span className="material-symbols-outlined logo-separateur">split_scene</span>
         </div>
 

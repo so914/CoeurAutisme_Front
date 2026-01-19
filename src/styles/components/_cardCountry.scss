@@ -1,3 +1,6 @@
 .card-country{
     cursor:pointer;
 }
+[data-bs-theme="dark"] .card-country h6{
+    color: white !important;
+}

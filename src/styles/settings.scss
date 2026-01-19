@@ -76,12 +76,7 @@
 }
 
 
-.background-flou:hover {
-  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-  transform: scale(0.9) translateY(5px); 
-  background-color: #36a55b;
-  cursor: pointer;
-}
+
 .text-color2{
   color: var(--primary-color);
   text-decoration: none;

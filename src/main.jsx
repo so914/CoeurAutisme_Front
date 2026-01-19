@@ -20,6 +20,7 @@ import InfastructuresAll from './pages/InfastructuresAll.jsx';
 import InfrasPays from './pages/InfrasPays.jsx';
 import Profil from './pages/Profil.jsx';
 import Telechargements from './pages/Telechargements.jsx';
+import CarteInfras from './pages/CarteInfras.jsx';
 
 createRoot(document.getElementById('root')).render(
   /*<StrictMode>*/
@@ -42,7 +43,9 @@ createRoot(document.getElementById('root')).render(
           <Route path='infrastructures/all' element={<InfastructuresAll/>}></Route>
           <Route path='/infrastructures/pays/:id' element={<InfrasPays/>}></Route>
           <Route path='/profil' element={<Profil/>}></Route>
-          <Route path='/profil/telechargements' element={<Telechargements/>}></Route>
+          <Route path='/telechargements' element={<Telechargements/>}
+          ></Route>
+          <Route path='/carte/infras' element={<CarteInfras/>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

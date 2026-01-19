@@ -17,8 +17,8 @@ const Communaute = () => {
           <main className="flex-grow-1 overflow-y-auto bg-background-light dark:bg-background-dark p-4 md:p-5">
               <ComInterface/>
           </main>
-        </div>
         <LogoChat/>
+        </div>
         <Footer/>
     </div>
   )

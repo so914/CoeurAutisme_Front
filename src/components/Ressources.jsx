@@ -13,6 +13,13 @@ const Ressources = () => {
     "Thérapie",
     "Routine",
   ];
+  const putComment=()=>{
+    const com= document.getElementById('moncommentaire');
+    com.className='d-flex form-control p-2'
+  }
+  
+
+  
 
   const allVideos = [
     {
@@ -180,9 +187,9 @@ const Ressources = () => {
                 <p className="text-muted">
                   {videoPrincipale.auteur} • {videoPrincipale.pays}
                 </p>
-                <h5>
-                  {videoPrincipale.likes} Likes •{" "}
-                  {videoPrincipale.commentaires.length} Commentaires
+                <h5 className="d-flex">
+                  {videoPrincipale.likes} <span className="material-symbols-outlined mx-1">favorite_border</span> •{" "}
+                  {videoPrincipale.commentaires.length} <button onClick={putComment} className="border-0 "><span className="material-symbols-outlined mx-1" >chat_bubble</span></button>
                 </h5>
                 <h6>Tous les avis</h6>
                 <div className="mt-4">
@@ -198,6 +205,9 @@ const Ressources = () => {
                     ))}
                   </div>
                 </div>
+                <form id="monFormulaire">
+                  <input type="text" id="moncommentaire" className="d-none" placeholder="Entrez votre commentaire ..."/>
+                </form>
               </div>
             </div>
 

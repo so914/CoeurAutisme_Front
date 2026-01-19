@@ -3,21 +3,34 @@ import LogoChat from "../components/LogoChat";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CardCountry from "../components/CardCountry";
-import { NavLink, useOutletContext } from "react-router-dom";
+import { NavLink, useOutletContext, useNavigate } from "react-router-dom";
 
 const Infrastructures = () => {
-  function loacteMe(){
-    if(!navigator.geolocation){
+  const navigate=useNavigate()
+  
+  function locateMe() {
+    if (!navigator.geolocation) {
       alert("La géolocalisation n'est pas supportée");
+      return;
     }
-    navigator.geolocation.getCurrentPosition((position)=>{
-      const lat=position.coords.latitude;
-      const lng=position.coords.longitude;
-      updateMap(lat,lng);
-      
-    })
-  }
 
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+
+        navigate("/carte/infras", {
+          state: { lat, lng}
+        });
+      },
+      (err) => {
+        console.error(err);
+        alert("Impossible de récupérer votre position");
+      },
+    );
+  }
+  
+  
     const paysAfrique = [
         {
           nom: "RDC",
@@ -60,6 +73,7 @@ const Infrastructures = () => {
   return (
     <div>
       <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <div className="container-fluid">
       <div className="row p-3">
         <div className="col-md-5 overflow-hidden position-relative">
           <div className="m-5 p-3 text-intro">
@@ -87,7 +101,7 @@ const Infrastructures = () => {
               />
             </form>
             <button className="inline-flex rounded-5 p-3 background-flou shadow-sm text-color w-100">
-              <span className="d-flex justify-content-center align-items-center" onClick="locateMe()">
+              <span className="d-flex justify-content-center align-items-center" onClick={locateMe}>
                 <span className="material-symbols-outlined me-2">
                   my_location
                 </span>
@@ -125,12 +139,13 @@ const Infrastructures = () => {
           
         </div>
 
-        <div className="col-md-7 overflow-y-auto bg-background-light dark:bg-background-dark p-4 md:p-5">
-          <div className="mx-auto mt-5 carte_afrique" style={{ maxWidth: "900px" }}>
-            <img className="" src="./Screenshot 2026-01-17 at 14-50-15 Supprimez l'arrière-plan d'une image gratuitement I Adobe Express.png" alt="carte_photo" />
+        <div className="col-md-7 mt-5  overflow-y-auto bg-background-light dark:bg-background-dark p-4 md:p-5">
+          <div className="overflow-y-auto carte_afrique" style={{ maxWidth: "900px" }}>
+            <img className="" src="./Gemini_Generated_Image_lk6g2qlk6g2qlk6g-removebg-preview.png" alt="carte_photo" />
           </div>
         </div>
         <LogoChat />
+      </div>
       </div>
       <Footer />
     </div>

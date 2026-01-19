@@ -12,8 +12,8 @@ const Chatbot = () => {
         <Navbar theme={theme} toggleTheme={toggleTheme}/>
         <div className="d-flex flex-grow-1 overflow-hidden position-relative">
           <ChatSide/>
-          <main className="flex-grow-1 overflow-y-auto bg-background-light dark:bg-background-dark p-4 md:p-5">
-            <div className="mx-auto" style={{ maxWidth: '900px' }}>
+          <main className="flex-grow-1 overflow-y-auto bg-background-light dark:bg-background-dark">
+            <div className="mx-auto" style={{maxWidth:"930px"}}>
                 <InterfaceChat/>
             </div>
          </main>
