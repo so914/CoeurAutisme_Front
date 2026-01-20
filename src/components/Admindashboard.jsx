@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const AdminDashboard = () => {
   const stats = [
@@ -19,24 +20,27 @@ const AdminDashboard = () => {
           <button className="btn btn-outline-secondary d-flex align-items-center gap-2 rounded-3">
             <span className="material-symbols-outlined fs-5">download</span> Exporter
           </button>
-          <button className="btn btn-primary-custom d-flex align-items-center gap-2 rounded-3">
-            <span className="material-symbols-outlined fs-5">add</span> Nouveau Module
-          </button>
+          <NavLink to='/register/modules' className="btn btn-primary-custom nav-link d-flex align-items-center gap-2 rounded-3 p-2">
+            <span className="material-symbols-outlined fs-5">add</span>Nouveau Module
+          </NavLink>
         </div>
       </div>
 
-      {/* Grille des KPIs */}
+
       <div className="row g-4 mb-5">
         {stats.map((stat, idx) => (
           <div key={idx} className="col-12 col-sm-6 col-lg-3">
             <div className="card h-100 border-0 shadow-sm rounded-4 p-4 position-relative overflow-hidden card-custom">
-              <span className="material-symbols-outlined position-absolute end-0 top-0 p-4 opacity-10 fs-1 text-primary">
+              
+              <p className="small text-muted fw-medium mb-1">{stat.label}</p>
+              <div className='d-flex'>
+              <h3 className="h2 fw-bold mb-2">{stat.value}</h3>
+              <span className="material-symbols-outlined position-absolute end-0 top-0 p-4 opacity-10 fs-2 text-primary-custom mt-4">
                 {stat.icon}
               </span>
-              <p className="small text-muted fw-medium mb-1">{stat.label}</p>
-              <h3 className="h2 fw-bold mb-2">{stat.value}</h3>
+              </div>
               <div className="text-success small fw-bold d-flex align-items-center gap-1">
-                <span className="material-symbols-outlined fs-6">trending_up</span> {stat.grow}
+                <span className="material-symbols-outlined fs-6 mt-2">trending_up</span> {stat.grow}
               </div>
             </div>
           </div>

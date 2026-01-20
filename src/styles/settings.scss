@@ -6,7 +6,9 @@
   --bg-light: #f8fcf9;
   --bg-dark: #102216;
 }
-
+.text-primary-custom{
+  color: var(--primary-dark) !important;
+}
 
 .btn-primary-custom {
   background-color: var(--primary-color) !important;

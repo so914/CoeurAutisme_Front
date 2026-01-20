@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
+import { useGoogleLogin } from '@react-oauth/google';
+
+
 const RegisterForm = () => {
+  const login = useGoogleLogin({
+  onSuccess: tokenResponse => console.log(tokenResponse),
+});
     const [showPassword, setShowPassword] = useState(false);
   return (
     <div>
@@ -188,7 +194,7 @@ const RegisterForm = () => {
 
       {/* Boutons Sociaux */}
       <div className="d-flex gap-2">
-        <button className="btn btn-outline-secondary flex-grow-1 d-flex align-items-center justify-content-center gap-2 rounded-4">
+        <button onClick={() => login()} className="btn btn-outline-secondary flex-grow-1 d-flex align-items-center justify-content-center gap-2 rounded-4">
            <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="18" alt="Google" /> Google
         </button>
         <button className="btn btn-outline-secondary flex-grow-1 d-flex align-items-center justify-content-center gap-2 rounded-4">

@@ -21,33 +21,41 @@ import InfrasPays from './pages/InfrasPays.jsx';
 import Profil from './pages/Profil.jsx';
 import Telechargements from './pages/Telechargements.jsx';
 import CarteInfras from './pages/CarteInfras.jsx';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import RegisterModule from './pages/RegisterModule.jsx';
+import Modules from './pages/Modules.jsx';
 
 createRoot(document.getElementById('root')).render(
-  /*<StrictMode>*/
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+    <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path='/dashboard' element={<Dashboard/>} />
-          <Route path='/login' element={<Login/>} />
-          <Route path='/tests' element={<DiagnosticPage/>} />
-          <Route path='/ressources' element={<Ressource/>} />
-          <Route path='/register' element={<Register/>} />
-          <Route path='/chat' element={<Chatbot/>} />
-          <Route path='/infrastructures' element={<Infrastructures/>} />
-          <Route path="/communaute" element={<Communaute/>}>
-            <Route index element={<Generalites/>} /> 
-            <Route path="sujets" element={<Sujets/>} />
-            <Route path="all" element={<MesCommunautes />} /> 
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/tests" element={<DiagnosticPage />} />
+          <Route path="/ressources" element={<Ressource />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/chat" element={<Chatbot />} />
+          <Route path="/infrastructures" element={<Infrastructures />} />
+
+          <Route path="/communaute" element={<Communaute />}>
+            <Route index element={<Generalites />} />
+            <Route path="sujets" element={<Sujets />} />
+            <Route path="all" element={<MesCommunautes />} />
           </Route>
-          <Route path='infrastructures/all' element={<InfastructuresAll/>}></Route>
-          <Route path='/infrastructures/pays/:id' element={<InfrasPays/>}></Route>
-          <Route path='/profil' element={<Profil/>}></Route>
-          <Route path='/telechargements' element={<Telechargements/>}
-          ></Route>
-          <Route path='/carte/infras' element={<CarteInfras/>}></Route>
+
+          <Route path="/infrastructures/all" element={<InfastructuresAll />} />
+          <Route path="/infrastructures/pays/:id" element={<InfrasPays />} />
+          <Route path="/profil" element={<Profil />} />
+          <Route path="/telechargements" element={<Telechargements />} />
+          <Route path="/carte/infras" element={<CarteInfras />} />
+          <Route path='/register/modules' element={<RegisterModule/>}></Route>
+          <Route path='/modules' element={<Modules/> }></Route>
         </Route>
       </Routes>
     </BrowserRouter>
-  /*</StrictMode>,*/
-)
+    </StrictMode>
+  </GoogleOAuthProvider>
+);

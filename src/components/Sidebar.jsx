@@ -1,17 +1,17 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
   const menuItems = [
-    { icon: 'dashboard', label: 'Dashboard', active: true },
-    { icon: 'group', label: 'Users' },
-    { icon: 'menu_book', label: 'Modules' },
-    { icon: 'medical_services', label: 'Diagnostics' },
-    { icon: 'map', label: 'Regions' },
-    { icon: 'settings', label: 'Settings' },
+    { icon: 'group', label: 'Users',lien:'/users' },
+    { icon: 'menu_book', label: 'Modules', lien:'/modules' },
+    { icon: 'medical_services', label: 'Diagnostics',lien:'/diagnostics' },
+    { icon: 'map', label: 'Regions', lien:'/map' },
+    { icon: 'settings', label: 'Settings',lien:'/settings' },
   ];
 
   return (
-    <aside className="d-none d-md-flex flex-column border-end bg-primary-custom text-white side-bar">
+    <aside className="d-none d-md-flex flex-column border-end  text-white side-bar">
       <div className="p-4 d-flex align-items-center gap-3">
         <div className='text-center'>
           <h1 className="h6 mb-0 fw-bold tracking-wide text-white">CoeurAustisme Admin</h1>
@@ -21,11 +21,11 @@ const Sidebar = () => {
 
       <nav className="flex-grow-1 px-3 mt-3">
         {menuItems.map((item, idx) => (
-          <a key={idx} href="#" 
+          <NavLink key={idx} to={item.lien} 
              className={`nav-link d-flex align-items-center gap-3 px-3 py-2 mb-2 rounded-3 transition-all ${item.active ? 'bg-white bg-opacity-20 shadow-sm' : 'text-white-50 hover-bg-white-10'}`}>
             <span className="material-symbols-outlined">{item.icon}</span>
             <span className="fw-medium">{item.label}</span>
-          </a>
+          </NavLink>
         ))} 
       </nav>
 
