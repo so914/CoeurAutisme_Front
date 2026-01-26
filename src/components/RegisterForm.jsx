@@ -3,6 +3,51 @@ import { useGoogleLogin } from '@react-oauth/google';
 
 
 const RegisterForm = () => {
+
+  const [formData , setFormData]=useState({
+    email:"",
+    nom:"",
+    profil:"",
+    date_naissance: "",
+    genre: "",
+    pays: "",
+    password: ""
+  })
+
+  const handleChange = (e) => {
+    setFormData({
+        ...formData,
+        [e.target.name]: e.target.value
+    });
+};
+
+
+const handleSubmit = async (e) => {
+    e.preventDefault(); 
+
+    try {
+        const response = await fetch("http://localhost:8000/api/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Inscription réussie !");
+            console.log(data);
+        } else {
+            alert("Erreur : " + (data.message || "Échec de l'inscription"));
+        }
+    } catch (error) {
+        console.error("Erreur réseau :", error);
+    }
+};
+
   const login = useGoogleLogin({
   onSuccess: tokenResponse => console.log(tokenResponse),
 });
@@ -15,11 +60,23 @@ const RegisterForm = () => {
         <p className="text-success small">Veuillez entrer vos informations pour créer votre compte.</p>
       </div>
 
-      <form className="d-flex flex-column gap-3">
+      <form className="d-flex flex-column gap-3" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="small fw-bold mb-1">Email ou Nom d'utilisateur</label>
+          <label className="small fw-bold mb-1">Nom d'utilisateur</label>
           <div className="input-group custom-pass-group">
-            <input type="email" className="form-control border-end-0 rounded-start-4" placeholder="Entrez votre email" />
+            <input type="nom" className="form-control border-end-0 rounded-start-4" 
+              onChange={handleChange} 
+              placeholder="Entrez votre email" 
+              name='nom'
+              value={formData.nom}/>
+            </div>
+          <label className="small fw-bold mb-1">Email</label>
+          <div className="input-group custom-pass-group">
+            <input type="email" className="form-control border-end-0 rounded-start-4" 
+              onChange={handleChange} 
+              placeholder="Entrez votre email" 
+              name='email'
+              value={formData.email}/>
             <button className="input-group-text bg-transparent rounded-end-4">
               <span className="material-symbols-outlined fs-5">mail</span>
             </button>
@@ -29,7 +86,11 @@ const RegisterForm = () => {
         <div className="form-group">
           <label className="small fw-bold mb-1">Profil</label>
           <div className="input-group custom-pass-group">
-            <select name="profil" className="form-control border-end-0 rounded-start-4" >
+            <select name="profil" 
+              className="form-control border-end-0 rounded-start-4"
+              onChange={handleChange}
+              value={formData.profil}
+            >
               <option value="">--- Quel profil vous correspond le mieux? ---</option>
               <option value="Personne autiste">Personne autiste</option>
               <option value="Parent d'un enfant autiste">Parent d'un enfant autiste</option>
@@ -45,14 +106,23 @@ const RegisterForm = () => {
         <div className="form-group">
           <label className="small fw-bold mb-1">Date de naissance</label>
           <div className="input-group custom-pass-group">
-            <input type="date" className="form-control border-end-0 rounded-start-4" placeholder="Entrez votre date de naissance" />
+            <input type="date" 
+              className="form-control border-end-0 rounded-start-4" 
+              placeholder="Entrez votre date de naissance" 
+              name='date_naissance'
+              value={formData.date_naissance}
+              onChange={handleChange}
+              />
           </div>
         </div>
 
         <div className="form-group">
           <label className="small fw-bold mb-1">Genre</label>
           <div className="input-group custom-pass-group">
-            <select name='genre' className="form-control border-end-0 rounded-start-4">
+            <select name='genre' 
+              className="form-control border-end-0 rounded-start-4"
+              onChange={handleChange}
+              value={formData.genre}>
               <option value="">--- Sélectionnez votre genre ---</option>
               <option value="Femme">Femme</option>
               <option value="Homme">Homme</option>
@@ -66,7 +136,10 @@ const RegisterForm = () => {
         <div className="form-group">
           <label className="small fw-bold mb-1">Pays de résidence</label>
           <div className="input-group custom-pass-group">
-            <select name='genre' className="form-control border-end-0 rounded-start-4">
+            <select name='pays' 
+              className="form-control border-end-0 rounded-start-4"
+              value={formData.pays}
+              onChange={handleChange}>
               <option value="">--- Sélectionnez votre pays ---</option>
                 <optgroup label="Afrique">
                   <option value="DZ">Algérie</option>
@@ -161,6 +234,9 @@ const RegisterForm = () => {
                 className="form-control border-end-0 rounded-start-4" 
                 placeholder="Entrez votre mot de passe" 
                 style={{ boxShadow: 'none' }} 
+                name='password'
+                onChange={handleChange}
+                value={formData.date_naissance}
               />
               <button 
                 type="button" 

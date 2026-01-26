@@ -8,9 +8,9 @@ const RegisterModule = () => {
     const { theme, toggleTheme } = useOutletContext();
   return (
     <div>
-        <TopHeader/>
+         <TopHeader theme={theme} toggleTheme={toggleTheme}/>
         <div className="d-flex flex-grow-1">
-                  <Sidebar theme={theme} toggleTheme={toggleTheme}  />
+                  <Sidebar />
                   
                   <main className={`flex-grow-1 p-4 ${theme === 'dark' ? 'bg-dark text-white' : 'bg-light'}`}>
                     <FormModule/>

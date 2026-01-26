@@ -1,34 +1,30 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
+import { NavLink, useOutletContext, useNavigate } from "react-router-dom";
 import LogoChat from "../components/LogoChat";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CardCountry from "../components/CardCountry";
-import { NavLink, useOutletContext, useNavigate } from "react-router-dom";
 
 const Infrastructures = () => {
-  const navigate=useNavigate()
-  
-  function locateMe() {
-    if (!navigator.geolocation) {
-      alert("La géolocalisation n'est pas supportée");
-      return;
-    }
-
+  const navigate=useNavigate();
+  const locateMe = () => {
+    // on récupère la position une seule fois pour naviguer
     navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const lat = pos.coords.latitude;
-        const lng = pos.coords.longitude;
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const accuracy = position.coords.accuracy;
 
-        navigate("/carte/infras", {
-          state: { lat, lng}
-        });
+        // navigation vers la page Carte avec state
+        navigate("/carte/infras", { state: { lat, lng, accuracy } });
       },
       (err) => {
-        console.error(err);
-        alert("Impossible de récupérer votre position");
+        if (err.code === 1) alert("Veuillez autoriser l'accès à votre localisation");
+        else alert("Impossible de récupérer la localisation actuelle");
       },
+      { enableHighAccuracy: true }
     );
-  }
+  };
   
   
     const paysAfrique = [
@@ -100,8 +96,8 @@ const Infrastructures = () => {
                 onChange={searchTerm}
               />
             </form>
-            <button className="inline-flex rounded-5 p-3 background-flou shadow-sm text-color w-100">
-              <span className="d-flex justify-content-center align-items-center" onClick={locateMe}>
+            <button className="inline-flex rounded-5 p-3 background-flou shadow-sm text-color w-100" onClick={locateMe}>
+              <span className="d-flex justify-content-center align-items-center">
                 <span className="material-symbols-outlined me-2">
                   my_location
                 </span>
@@ -141,7 +137,7 @@ const Infrastructures = () => {
 
         <div className="col-md-7 mt-5  overflow-y-auto bg-background-light dark:bg-background-dark p-4 md:p-5">
           <div className="overflow-y-auto carte_afrique" style={{ maxWidth: "900px" }}>
-            <img className="" src="./Gemini_Generated_Image_lk6g2qlk6g2qlk6g-removebg-preview.png" alt="carte_photo" />
+            <img className="" src="/images/Gemini_Generated_Image_lk6g2qlk6g2qlk6g-removebg-preview.png" alt="carte_photo" />
           </div>
         </div>
         <LogoChat />

@@ -7,7 +7,7 @@ const LogoChat = () => {
         <div className="logo-chat">
             <div className="contour-chat">
                 <NavLink to='/chat'>
-                    <img src="./ChatGPT Image 8 janv. 2026, 16_42_48.png" alt="chat"/>
+                    <img src="/images/ChatGPT Image 8 janv. 2026, 16_42_48.png" alt="chat"/>
                 </NavLink>
             </div>
         </div>

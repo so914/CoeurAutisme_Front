@@ -9,11 +9,11 @@ const AfricanImpact = () => {
           {/* Côté Gauche : L'image de la carte */}
           <div className="col-lg-6 text-center">
             <div className="position-relative p-4">
-              <div className="position-absolute top-50 start-50 translate-middle bg-primary-custom opacity-10 rounded-circle" 
+              <div className="position-absolute top-50 start-50 translate-middle opacity-10 rounded-circle" 
                    style={{ width: '120%', paddingTop: '120%', zIndex: -1 }}></div>
               
               <img 
-                src="./Gemini_Generated_Image_d3cwmhd3cwmhd3cw.png"
+                src="/images/ChatGPT Image 26 janv. 2026, 02_41_42.png"
                 alt="Carte de l'Afrique impact Jali" 
                 className="img-fluid rounded-4 shadow-sm"
                 style={{ maxHeight: '450px', objectFit: 'contain' }}

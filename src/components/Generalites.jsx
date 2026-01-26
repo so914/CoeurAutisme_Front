@@ -1,7 +1,20 @@
 import React, { useState } from "react";
+import { NavLink } from 'react-router-dom';
 
 const Generalites = () => {
   const [actifCommunity, setActif] = useState(null);
+  const joinUs=()=>{
+    const choice=confirm("En appuyant sur le boutton rejoindre, vous acceptez de vous soumettre aux réglements de la communauté. Appuyer sur OK pour confirmez votre choix afin rejoindre la communauté.")
+    if (choice){
+      alert('Vous êtes désormais membres de cette communauté') 
+    }
+  }
+  const waitAcces=()=>{
+    const submission=confirm("En appuyant sur le boutton rejoindre vous acceptez de vous soumettre aux réglements de la communauté. Une demande d'addhésion sera envoyée à l'administrateur de la communauté , cliquez sur OK pour envoyer votre demande.")
+    if (submission) alert('Demande envoyé avec succès, vous receverez une notification concernant votre demande.')
+    else alert("Vous avez annulé la demande d'adhésion.")
+  }
+
   if (actifCommunity) {
     return (
       <div>
@@ -27,6 +40,7 @@ const Generalites = () => {
               src={actifCommunity.coverImage}
               className="card-img-top"
               alt={actifCommunity.name}
+              style={{border: `4px solid ${actifCommunity.border}`}}
             />
           </div>
           <div className="card-body pt-5">
@@ -56,7 +70,6 @@ const Generalites = () => {
                             <p className="my-3">{p.author}</p>
                           </div>
                           <p className="d-flex my-3">
-                            {" "}
                             <span className="material-symbols-outlined mx-1">
                               favorite_border
                             </span>
@@ -94,12 +107,20 @@ const Generalites = () => {
               >
                 <div className="d-flex gap-3">
                   <button className="border btn rounded-5 d-flex text-muted">
-                    <span className="material-symbols-outlined">add</span>Créer
-                    une publication
+                    <NavLink to='/register/publications' className="nav-link d-flex" ><span className="material-symbols-outlined ">add</span>Créer
+                    une publication </NavLink>
                   </button>
-                  <button className="btn btn-primary-custom rounded-5">
+                  {!actifCommunity.isPrivate && (
+                    <button className="btn btn-primary-custom rounded-5" onClick={joinUs}>
                     Rejoindre
                   </button>
+                  )}
+                  {actifCommunity.isPrivate && (
+                    <button className="btn btn-primary-custom rounded-5" onClick={waitAcces}>
+                      Rejoindre
+                    </button>
+                  )}
+                  
                 </div>
                 <p className="mt-4 d-flex">
                   <span className="material-symbols-outlined mx-1">
@@ -175,6 +196,7 @@ const Generalites = () => {
       description:
         "Un espace de soutien et d'échange pour les parents d'enfants autistes. Partage d'expériences, de conseils et de ressources locales.",
       category: "Soutien Familial",
+      border:'brown',
       coverImage:
         "https://mrmondialisation.org/wp-content/uploads/2016/02/Mont-Valin-2si-2-e1456448123336.jpg",
       isPrivate: false,
@@ -280,6 +302,7 @@ const Generalites = () => {
       description:
         "Communauté dédiée aux adultes autistes. Discussions sur l'emploi, la vie sociale et l'auto-représentation.",
       category: "Auto-représentation",
+      border:'red',
       coverImage:
         "https://www.sciencesetavenir.fr/assets/img/2018/05/04/cover-r4x3w1200-5aebf9b34a11b-5af01206665b73eb4c7127e3e27e50a1c7b1378b-jpg.jpg",
       isPrivate: true,
@@ -335,6 +358,7 @@ const Generalites = () => {
       description:
         "Suivi des dernières études scientifiques et avancées technologiques autour du TSA.",
       category: "Scientifique",
+      border:'green',
       coverImage:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZQzo-Qf8zV3dNq691VlF4ODMdyGGKxXI5aw&s",
       isPrivate: false,
@@ -390,10 +414,14 @@ const Generalites = () => {
   return (
     <div>
       <div className="container ">
-        <div className="text-center mb-5 mt-5">
-          <h3>Découvrez votre prochaine Communauté</h3>
-        </div>
-        <form className="d-flex input-group mb-3" role="search">
+        <h2 className="display-6 fw-bold text-dark mb-3 my-4">
+        Explorez les échanges de la <span className="text-primary-custom">communauté</span>
+      </h2>
+      
+      <p className="lead text-muted mb-5 px-md-5">
+        Trouvez des réponses, partagez vos expériences et connectez-vous avec des milliers de membres autour des sujets qui comptent pour vous.
+      </p>
+        <form className="d-flex input-group mb-5 " role="search">
           <span className="input-group-text bg-surface border-end-0 rounded-start-5">
             <span className="material-symbols-outlined text-muted">search</span>
           </span>

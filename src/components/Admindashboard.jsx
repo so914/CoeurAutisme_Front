@@ -17,9 +17,9 @@ const AdminDashboard = () => {
           <p className="text-muted mb-0">Dernières données de votre réseau de soutien en Afrique.</p>
         </div>
         <div className="d-flex gap-2">
-          <button className="btn btn-outline-secondary d-flex align-items-center gap-2 rounded-3">
+          <NavLink to='/register/ressources' className="btn btn-outline-secondary  nav-link d-flex align-items-center gap-2 rounded-3">
             <span className="material-symbols-outlined fs-5">download</span> Exporter
-          </button>
+          </NavLink>
           <NavLink to='/register/modules' className="btn btn-primary-custom nav-link d-flex align-items-center gap-2 rounded-3 p-2">
             <span className="material-symbols-outlined fs-5">add</span>Nouveau Module
           </NavLink>

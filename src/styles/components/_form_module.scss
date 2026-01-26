@@ -1,3 +1,29 @@
 .form_module{
     width: 65%;
 }
+.form_module label{
+    margin-top: 10px;
+}
+.couverture_module{
+    overflow: hidden;
+}
+.p-mod{
+    width: 90%;
+    text-align: justify;
+}
+.card_module{
+    height:160px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+.card_module .row .col-md-6 p{
+    margin: 0px !important;   
+}
+.btn_new{   
+    margin-right: 12px;
+    margin-top: -4px;
+    color: var(--primary-dark) !important;
+}
+.col_info{
+    justify-content: end;
+}

@@ -1,8 +1,14 @@
 .side-bar{
     width: 260px;
-    min-height: 100vh,;
-    background-color: var(--primary-dark)
+    min-height: 100vh;
 }
-[data-bs-theme="dark"].side-bar{
-    background-color: #1a2e22;
+[data-bs-theme="dark"] .side-bar .nav-link{
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .side-bar .nav-link:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.side-bar .nav-link:hover{
+    background-color: rgba(173, 216, 230, 0.247) !important;
 }

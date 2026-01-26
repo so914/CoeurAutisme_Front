@@ -1,4 +1,5 @@
 import React from 'react';
+import { LuThumbsUp, LuCamera, LuMail } from "react-icons/lu";
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
           <div className="col-lg-6">
             <div className="d-flex align-items-center gap-2 mb-4">
               <div>
-                <img className="logo-image d-inline-block align-top" src="./Screenshot_2025-12-22_at_15-34-17_Google_Gemini-removebg-preview.png" alt="logo" />
+                <img className="logo-image d-inline-block align-top" src="/images/Screenshot_2025-12-22_at_15-34-17_Google_Gemini-removebg-preview.png" alt="logo" />
               </div>
               <h2 className="h4 mb-0 fw-bold">
                 Coeur<span style={{ color: 'var(--primary-dark)' }}>Autisme</span>
@@ -22,9 +23,9 @@ const Footer = () => {
             
            <div className="d-flex gap-3">
         {[
-          { id: '1', icon: 'Thumb_up' }, 
-          { id: '2', icon: 'photo_camera' }, 
-          { id: '3', icon: 'mail' }
+          { id: '1', icon: <LuThumbsUp />, label: 'Like' }, 
+  { id: '2', icon: <LuCamera />, label: 'Photo' }, 
+  { id: '3', icon: <LuMail />, label: 'Email' }
         ].map((item) => (
           <a key={item.id} href="#" 
             className="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
