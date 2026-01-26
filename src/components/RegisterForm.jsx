@@ -6,11 +6,12 @@ const RegisterForm = () => {
 
   const [formData , setFormData]=useState({
     email:"",
-    nom:"",
+    name:"",
     profil:"",
-    date_naissance: "",
+    date_of_birth: "",
     genre: "",
-    pays: "",
+    city: "",
+    address:"",
     password: ""
   })
 
@@ -64,11 +65,11 @@ const handleSubmit = async (e) => {
         <div className="form-group">
           <label className="small fw-bold mb-1">Nom d'utilisateur</label>
           <div className="input-group custom-pass-group">
-            <input type="nom" className="form-control border-end-0 rounded-start-4" 
+            <input type="text" className="form-control border-end-0 rounded-start-4" 
               onChange={handleChange} 
-              placeholder="Entrez votre email" 
-              name='nom'
-              value={formData.nom}/>
+              placeholder="Entrez votre nom" 
+              name='name'
+              value={formData.name}/>
             </div>
           <label className="small fw-bold mb-1">Email</label>
           <div className="input-group custom-pass-group">
@@ -109,8 +110,8 @@ const handleSubmit = async (e) => {
             <input type="date" 
               className="form-control border-end-0 rounded-start-4" 
               placeholder="Entrez votre date de naissance" 
-              name='date_naissance'
-              value={formData.date_naissance}
+              name='date_of_birth'
+              value={formData.date_of_birth}
               onChange={handleChange}
               />
           </div>
@@ -136,9 +137,9 @@ const handleSubmit = async (e) => {
         <div className="form-group">
           <label className="small fw-bold mb-1">Pays de résidence</label>
           <div className="input-group custom-pass-group">
-            <select name='pays' 
+            <select name='city' 
               className="form-control border-end-0 rounded-start-4"
-              value={formData.pays}
+              value={formData.city}
               onChange={handleChange}>
               <option value="">--- Sélectionnez votre pays ---</option>
                 <optgroup label="Afrique">
@@ -236,7 +237,7 @@ const handleSubmit = async (e) => {
                 style={{ boxShadow: 'none' }} 
                 name='password'
                 onChange={handleChange}
-                value={formData.date_naissance}
+                value={formData.password}
               />
               <button 
                 type="button" 
@@ -259,7 +260,7 @@ const handleSubmit = async (e) => {
           <a href="#" className="text-primary-custom fw-bold text-decoration-none">Mot de passe oublié ?</a>
         </div>
 
-        <button className="btn btn-primary-custom w-100 py-2 fw-bold shadow-sm">Se connecter</button>
+        <button className="btn btn-primary-custom w-100 py-2 fw-bold shadow-sm">S'inscrire</button>
       </form>
 
       {/* Séparateur */}
