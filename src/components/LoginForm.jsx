@@ -1,8 +1,50 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'; 
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate=useNavigate();
+
+    const [formData , setFormData]=useState({
+      email:"",
+      password: ""
+    })
+  
+    const handleChange = (e) => {
+      setFormData({
+          ...formData,
+          [e.target.name]: e.target.value
+      });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+
+    try {
+        const response = await fetch("http://localhost:8000/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Connexion réussie !");
+            Cookies.set('auth_token', data.data.token, { expires: 7, secure: true });
+            localStorage.setItem('user_data', JSON.stringify(data.data.user));
+            console.log(data);
+            navigate('/communaute');
+        } else {
+            alert("Erreur : " + (data.message));
+        }
+    } catch (error) {
+        console.error("Erreur réseau :", error);
+    }
+};
 
   return (
     <div className="mx-auto w-100" style={{ maxWidth: '480px' }}>
@@ -11,11 +53,15 @@ const LoginForm = () => {
         <p className="text-success small">Veuillez entrer vos informations pour accéder à votre compte.</p>
       </div>
 
-      <form className="d-flex flex-column gap-3">
+      <form className="d-flex flex-column gap-3" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="small fw-bold mb-1">Email ou Nom d'utilisateur</label>
+          <label className="small fw-bold mb-1">Email </label>
           <div className="input-group custom-pass-group">
-            <input type="email" className="form-control border-end-0 rounded-start-4" placeholder="Entrez votre email" />
+            <input type="email" className="form-control border-end-0 rounded-start-4" 
+              placeholder="Entrez votre email" 
+              name='email'
+              value={formData.email}
+              onChange={handleChange}/>
             <button className="input-group-text rounded-end-4">
               <span className="material-symbols-outlined fs-5">mail</span>
             </button>
@@ -30,6 +76,9 @@ const LoginForm = () => {
                 className="form-control border-end-0 rounded-start-4" 
                 placeholder="Entrez votre mot de passe" 
                 style={{ boxShadow: 'none' }} 
+                name='password'
+                value={formData.password}
+                onChange={handleChange}
               />
               <button 
                 type="button" 

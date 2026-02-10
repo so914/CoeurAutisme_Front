@@ -3,8 +3,55 @@ import VideoCard from "./VideoCard";
 import VideoLine from "./VideoLine";
 
 const Ressources = () => {
-  const [videoPrincipale, setVideoPrincipale] = useState(null);
+
+  // Charger la vidéo principale depuis le localStorage au démarrage
+  const [videoPrincipale, setVideoPrincipale] = useState(() => {
+    const saved = localStorage.getItem("last_watched_video");
+    return saved ? JSON.parse(saved) : null;
+  });
+
   const [filtreActif, setFiltreActif] = useState("Tout");
+  const [showCommentInput, setShowCommentInput] = useState(false);
+
+  // Fonction pour gérer le clic sur une vidéo 
+  const handleVideoSelect = (video) => {
+    setVideoPrincipale(video);
+    setShowCommentInput(false);
+
+
+
+
+
+
+
+
+
+
+    
+    
+    // Sauvegarder pour le rafraîchissement
+    localStorage.setItem("last_watched_video", JSON.stringify(video));
+
+    // Gérer l'historique
+    const historySaved = localStorage.getItem("video_history");
+    let history = historySaved ? JSON.parse(historySaved) : [];
+    
+    // Éviter les doublons (on retire la vidéo si elle existe déjà pour la remettre en haut)
+    history = history.filter(v => v.id !== video.id);
+    
+    // Ajouter au début de la liste avec la date actuelle
+    const videoWithDate = { ...video, watchedAt: new Date().toISOString() };
+    history.unshift(videoWithDate);
+    
+    // stocker seulement les 20 dernières vidéos
+    localStorage.setItem("video_history", JSON.stringify(history.slice(0, 20)));
+  };
+
+  //quitter le lecteur
+  const handleBackToGrid = () => {
+    setVideoPrincipale(null);
+    localStorage.removeItem("last_watched_video");
+  };
 
   const categories = [
     "Tout",
@@ -13,10 +60,7 @@ const Ressources = () => {
     "Thérapie",
     "Routine",
   ];
-  const putComment=()=>{
-    const com= document.getElementById('moncommentaire');
-    com.className='d-flex form-control p-2'
-  }
+ 
   
 
   
@@ -138,13 +182,13 @@ const Ressources = () => {
             </div>
           </div>
             <div className="col-md-2 photo_coeur">
-              <img src="file_00000000639071fd9e85d753d003dd4f-removebg-preview.png" alt="photo_amour" />
+              <img src="/images/file_00000000639071fd9e85d753d003dd4f-removebg-preview.png" alt="photo_amour" />
             </div>
 
         </div>
         {videoPrincipale && (
           <button
-            onClick={() => setVideoPrincipale(null)}
+            onClick={() => handleBackToGrid()}
             className="btn btn-sm  mb-4"
           >
             ← Retour à la grille
@@ -160,7 +204,7 @@ const Ressources = () => {
                 className="VideoCard"
                 key={video.id}
                 video={video}
-                onClick={(v) => setVideoPrincipale(v)}
+                onClick={(v) =>handleVideoSelect(v)  }
               />
             ))}
           </div>
@@ -189,7 +233,7 @@ const Ressources = () => {
                 </p>
                 <h5 className="d-flex">
                   {videoPrincipale.likes} <span className="material-symbols-outlined mx-1">favorite_border</span> •{" "}
-                  {videoPrincipale.commentaires.length} <button onClick={putComment} className="border-0 "><span className="material-symbols-outlined mx-1" >chat_bubble</span></button>
+                  {videoPrincipale.commentaires.length} <button className="border-0 "><span className="material-symbols-outlined mx-1" >chat_bubble</span></button>
                 </h5>
                 <h6>Tous les avis</h6>
                 <div className="mt-4">

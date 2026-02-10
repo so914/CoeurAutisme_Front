@@ -15,11 +15,13 @@ const Home = () => {
   return (
     <>
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <Hero />
+      <main>
+        <Hero />
       <LogoChat/>
       <Modules/>
       <AfricanImpact/>
       <Testimonials/>
+      </main>
       <Footer />
     </>
   );

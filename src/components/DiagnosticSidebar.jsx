@@ -1,5 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaRegUser } from "react-icons/fa6";
+import { MdMenuBook } from "react-icons/md";
+import { MdOutlineDiversity1 } from "react-icons/md";
+import { LuHistory } from "react-icons/lu";
+import { MdAssignment } from "react-icons/md";
 
 const DiagnosticSidebar = () => {
   return (
@@ -20,34 +25,34 @@ const DiagnosticSidebar = () => {
             }`
           }
         >
-          <span className="material-symbols-outlined">assignment</span> Évaluation
+          <MdAssignment size={20} /> Évaluation
         </NavLink>
         
         <NavLink 
           to="/profil" 
           className={({ isActive }) => `nav-link d-flex align-items-center gap-3 p-3 rounded-3 ${isActive ? 'active-custom' : 'text-muted'}`}
         >
-          <span className="material-symbols-outlined">person</span> Mon Profil
+          <FaRegUser size={20}/> Mon Profil
         </NavLink>
 
         <NavLink 
           to="/ressources" 
           className={({ isActive }) => `nav-link d-flex align-items-center gap-3 p-3 rounded-3 ${isActive ? 'active-custom' : 'text-muted'}`}
         >
-          <span className="material-symbols-outlined">menu_book</span> Ressources
+          <MdMenuBook size={20}/> Ressources
         </NavLink>
 
         <NavLink 
           to="/communaute" 
           className={({ isActive }) => `nav-link d-flex align-items-center gap-3 p-3 rounded-3 ${isActive ? 'active-custom' : 'text-muted'}`}
         >
-          <span className="material-symbols-outlined">diversity_1</span> Communauté
+          <MdOutlineDiversity1 size={20}/> Communauté
         </NavLink>
         <NavLink 
           to="/tests/historique" 
           className={({ isActive }) => `nav-link d-flex align-items-center gap-3 p-3 rounded-3 ${isActive ? 'active-custom' : 'text-muted'}`}
         >
-          <span className="material-symbols-outlined">history</span> Historique
+          <LuHistory size={20}/> Historique
         </NavLink>
       </nav>
 

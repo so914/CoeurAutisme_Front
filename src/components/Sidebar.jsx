@@ -1,14 +1,21 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { SiSimpleanalytics } from "react-icons/si";
+import { MdOutlineGroup } from "react-icons/md";
+import { MdOutlineMenuBook } from "react-icons/md";
+import { MdOutlineMedicalServices } from "react-icons/md";
+import { FaMap } from "react-icons/fa";
+import { IoSettings } from "react-icons/io5"
+
 
 const Sidebar = () => {
-  const menuItems = [
-    { icon: 'analytics', label: 'Statistiques',lien:'/dashboard' },
-    { icon: 'group', label: 'Users',lien:'/users' },
-    { icon: 'menu_book', label: 'Modules', lien:'/modules' },
-    { icon: 'medical_services', label: 'Diagnostics',lien:'/diagnostics' },
-    { icon: 'map', label: 'Regions', lien:'/map' },
-    { icon: 'settings', label: 'Settings',lien:'/settings' },
+  const menuItems = [                                                                                                                                                 
+    { icon: <SiSimpleanalytics />, label: 'Statistiques',lien:'/dashboard' },
+    { icon: <MdOutlineGroup /> , label: 'Users',lien:'/users' },                                                                                                                                         
+    { icon: <MdOutlineMenuBook />, label: 'Modules', lien:'/modules' },
+    { icon: <MdOutlineMedicalServices />, label: 'Diagnostics',lien:'/diagnostics' },
+    { icon: <FaMap />, label: 'Regions', lien:'/map' },
+    { icon: <IoSettings />, label: 'Settings',lien:'/settings' },
   ];
 
   return (
