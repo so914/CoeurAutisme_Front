@@ -147,6 +147,21 @@ const Ressources = () => {
     (v) => filtreActif === "Tout" || v.categorie === filtreActif
   );
 
+  const cartes=[
+    {
+    title:"Vidéos",
+    background:"./images/"
+  },
+  {
+    title:"Cartes mentales",
+    background:"./images/"
+  },
+  {
+    title:"Jeux",
+    background:"./images/"
+  }
+]
+
   // Vidéos pour la barre de droite
   const prochainesVideos = videoPrincipale
     ? allVideos.filter((v) => v.id !== videoPrincipale.id)
@@ -179,7 +194,16 @@ const Ressources = () => {
                   {cat}
                 </button>
               ))}
+
             </div>
+            <div className="flex">
+              {cartes.map((carte,index)=>(
+                <div key={index} className="card card-custom rounded-4 shadow-sm" style={{width:"18rem"}}>
+                  <img src={carte.background} className="card-img-top rounded-4" alt={carte.title} />
+                  <h4 className="card-title text-center mt-2">{carte.title}</h4>
+                </div>
+            ))}
+          </div>
           </div>
             <div className="col-md-2 photo_coeur">
               <img src="/images/file_00000000639071fd9e85d753d003dd4f-removebg-preview.png" alt="photo_amour" />

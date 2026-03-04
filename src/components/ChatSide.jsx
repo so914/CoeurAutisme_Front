@@ -1,14 +1,25 @@
-import React from 'react';
+import {React ,useEffect,useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const ChatSide = () => {
+
+    const [isActif,setActif]=useState(true);
+
+    useEffect(
+        ()=>{
+            const closeSide=()=>{
+                setActif(false);
+                console.log("isactif après le clik",isActif);
+            }
+},[isActif]);
+
+
     return (
-      <aside 
-        className="d-none d-lg-flex flex-column bg-background-light dark:bg-background-dark border-end p-4 side-bar-diagnostic h-auto" style={{height:"100vh", minWidth:"300px"}}>
+        <aside className={ `cursor-pointer  bg-background-light dark:bg-background-dark border-end p-4 side-bar-diagnostic h-auto ${isActif===false ? 'hidden' : 'd-none d-lg-flex flex-column'}`} style={{height:"100vh", minWidth:"300px"}}>
   
         <div className='d-flex'>
-            <img className="logo-image d-inline-block align-top rounded-5" src="./ChatGPT Image 8 janv. 2026, 16_42_48.png" alt="logochat" style={{width:'55px',height:'55px'}}/>
-            <span className="material-symbols-outlined logo-separateur">split_scene</span>
+            <img className="logo-image d-inline-block align-top rounded-5" src="./images/ChatGPT Image 8 janv. 2026, 16_42_48.png" alt="logochat" style={{width:'55px',height:'55px'}}/>
+            <span onClick={closeSide} className="material-symbols-outlined logo-separateur">split_scene</span>
         </div>
 
         <div className='my-3 px-3'>

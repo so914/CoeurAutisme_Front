@@ -1,8 +1,11 @@
 import React from 'react';
+import { RiStarSFill } from "react-icons/ri";
+import { TbQuote } from "react-icons/tb";
+
 
 const TestimonyCard = ({ name, role, message, image, date }) => (
   <div className="col-md-4 mb-4">
-    <div className="card h-100 border-0 shadow-sm rounded-4 p-4 card-custom transition-all">
+    <div className="card h-100 border-0 shadow-sm rounded-4 p-4 card-custom transition-all cursor-pointer">
       <div className="d-flex align-items-center gap-3 mb-4">
         <div className="position-relative">
           <img 
@@ -12,7 +15,7 @@ const TestimonyCard = ({ name, role, message, image, date }) => (
             style={{ width: '60px', height: '60px', objectFit: 'cover' }}
           />
           <div className="position-absolute bottom-0 end-0 bg-primary-custom rounded-circle d-flex align-items-center justify-content-center" style={{ width: '20px', height: '20px' }}>
-            <span className="material-symbols-outlined text-dark" style={{ fontSize: '12px' }}>format_quote</span>
+            <TbQuote className="text-white" size={12} />
           </div>
         </div>
         <div>
@@ -28,7 +31,7 @@ const TestimonyCard = ({ name, role, message, image, date }) => (
       <div className="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
         <div className="text-warning d-flex">
           {[...Array(5)].map((_, i) => (
-            <span key={i} className="material-symbols-outlined fs-6" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+            <RiStarSFill key={i}/>
           ))}
         </div>
         <span className="text-muted small">{date}</span>

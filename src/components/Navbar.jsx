@@ -39,12 +39,14 @@ const Navbar = ({ theme, toggleTheme }) => {
 
   const handleLogout =async () => {
     try {
-        const response = await fetch("http://localhost:8000/api/logout");
+        const response = await fetch("http://localhost:8000/api/logout",{
+          method: "POST"
+        });
 
         const data = await response.json();
 
         if (response.ok) {
-            // Nettoyage du stockage
+            // Nettoyage du stockage 
     Cookies.remove('auth_token');
     localStorage.removeItem('user_data');
     

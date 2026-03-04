@@ -8,7 +8,7 @@ const Hero = () => {
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9BQ4O-txaiqO2zJeDVsI1AT-Tmav2y2KNrjfa1-cYpbKTL_Hs0Md9tDTnMajBX71Af8g6mplG5vvJzo4XVINtohmCI-_cPLgGP2Hma_Y60JE-O1jErtVPs2L-cvtQCGnTz8GqTInMrCjTpq1nopFLqi5qp196hf2VhnhqcJUyNiHP9dGQs9KD7NNpiHsozQ4pvGsXCrseyri05r7zzQCs6edz4NIAgsFVH0wzERVpdirEKgyy7E0sUwhi7pxr8WSF0AxVwP7iKvb3" 
           className="position-absolute w-100 h-100" 
           style={{objectFit: 'cover', zIndex: -1}} 
-          alt="Héros"
+          alt="garçon autiste souriant"
         />
         <div className="position-absolute w-100 h-100" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)', zIndex: 0}}></div>
         
