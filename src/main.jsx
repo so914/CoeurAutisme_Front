@@ -29,6 +29,8 @@ import Form_communaute from './components/Form_communaute.jsx';
 import RegisterPublication from './pages/RegisterPublication.jsx';
 import Users from './pages/Users.jsx';
 import Map from './pages/Map.jsx';
+import Videos from './pages/Videos.jsx';
+import RessourcesGames from './pages/RessourcesGames.jsx';
 
 createRoot(document.getElementById('root')).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
@@ -38,10 +40,12 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path='/users' element={<Users/>} />
+          <Route path='/dashboard/users' exact element={<Users/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/tests" element={<DiagnosticPage />} />
-          <Route path="/ressources" element={<Ressource />} />
+          <Route path="/ressources" exact element={<Ressource />} />
+          <Route path="/ressources/videos" exact  element={<Videos/>} />
+          <Route path="/ressources/games" exact element={<RessourcesGames/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/chat" element={<Chatbot />} />
           <Route path="/infrastructures" element={<Infrastructures />} />
@@ -51,7 +55,7 @@ createRoot(document.getElementById('root')).render(
             <Route index element={<Generalites />} />
             <Route path="sujets" element={<Sujets />} />
             <Route path="all" element={<MesCommunautes />} />
-            <Route path='register/communaute' element={<Form_communaute/>}></Route>
+            <Route path='register/communaute' element={<Form_communaute/>} />          
           </Route>
 
           <Route path="/infrastructures/all" element={<InfastructuresAll />} />

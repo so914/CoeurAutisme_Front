@@ -9,6 +9,8 @@
     transition: all 0.2s ease;            
 }
 
+
+
 /* État Actif */
 .button-filter.active {
     background-color: var(--secondary-green) !important; 
@@ -41,3 +43,23 @@
     height: auto;
     margin-top: -60px;
 }
+
+.cards{
+    height:18rem !important;
+    position:relative;
+    img{
+        object-fit: cover;
+        height: 100%;
+        
+    }
+}
+.w-45{
+    width:400px !important;
+}
+.icone-content{
+    width:50px;
+    height:50px;
+    position:absolute;
+    top:-16px;
+    left:45%;
+}                                                                                       

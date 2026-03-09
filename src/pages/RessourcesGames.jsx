@@ -1,23 +1,19 @@
 import React from 'react'
 import { useOutletContext } from 'react-router-dom';
 import Footer from '../components/Footer'
-import Navbar from '../components/Navbar'
-import Ressources from '../components/Ressources';
-import LogoChat from '../components/LogoChat';
+import Navbar from '../components/Navbar';
+import MaVoixMagique from "../components/MaVoixMagique"
 
-const Ressource = () => {
-    // On récupère le thème et la fonction depuis App.jsx via le contexte
+const RessourcesGames = () => {
     const { theme, toggleTheme } = useOutletContext();
   return (
     <div>
         <Navbar theme={theme} toggleTheme={toggleTheme}/>
         <main>
-          <LogoChat/>
-          <Ressources/>
+          <MaVoixMagique />
         </main>
         <Footer/>
     </div>
   )
 }
-
-export default Ressource
+export default RessourcesGames;

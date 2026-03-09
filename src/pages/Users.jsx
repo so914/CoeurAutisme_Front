@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import { useOutletContext } from 'react-router-dom';
 import TopHeader from '../components/Topheader' 
@@ -38,6 +38,10 @@ const Users = () => {
         }
 
     ]
+    const termes=["tout","email","profil","genre","data_naissance"];
+
+    const [isActif,setActif]=useState("tout");
+
   return (
     <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
         <TopHeader theme={theme} toggleTheme={toggleTheme} />
@@ -46,7 +50,16 @@ const Users = () => {
           <Sidebar theme={theme} toggleTheme={toggleTheme}  />
           
           <main className={`flex-grow-1 p-4 ${theme === 'dark' ? 'bg-dark text-white' : 'bg-light'}`}>
-            <h3 className='text-color my-4'>Gestion des utilisateurs</h3>
+            <div className="d-flex justify-content-between gap-4">
+                <h3 className='text-color my-4'>Gestion des utilisateurs</h3>
+                <form>
+                <select name="filtre" id="filtre" className='py-2 bg-white border-lightgray rounded-2' onSelect={()=>setActif()}>
+                    {termes.map((c)=>(
+                        <option value={c} key={c}>{c}</option>
+))}
+                </select>
+            </form>
+            </div>
             <div className="row my-4">
                 <div className="col-md-1">#Id</div>
                 <div className="col-md-3">Email</div>

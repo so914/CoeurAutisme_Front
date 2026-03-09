@@ -1,178 +1,69 @@
-import React, { useState } from "react";
-import VideoCard from "./VideoCard";
-import VideoLine from "./VideoLine";
+import React from "react";
+import { FiDownload } from "react-icons/fi";
+import { NavLink } from "react-router-dom";
+import { PiVideoBold } from "react-icons/pi";
+import { SiSecurityscorecard } from "react-icons/si";
+import { SlGameController } from "react-icons/sl";
+import { IoMdSearch } from "react-icons/io";
 
 const Ressources = () => {
-
-  // Charger la vidéo principale depuis le localStorage au démarrage
-  const [videoPrincipale, setVideoPrincipale] = useState(() => {
-    const saved = localStorage.getItem("last_watched_video");
-    return saved ? JSON.parse(saved) : null;
-  });
-
-  const [filtreActif, setFiltreActif] = useState("Tout");
-  const [showCommentInput, setShowCommentInput] = useState(false);
-
-  // Fonction pour gérer le clic sur une vidéo 
-  const handleVideoSelect = (video) => {
-    setVideoPrincipale(video);
-    setShowCommentInput(false);
-
-
-
-
-
-
-
-
-
-
-    
-    
-    // Sauvegarder pour le rafraîchissement
-    localStorage.setItem("last_watched_video", JSON.stringify(video));
-
-    // Gérer l'historique
-    const historySaved = localStorage.getItem("video_history");
-    let history = historySaved ? JSON.parse(historySaved) : [];
-    
-    // Éviter les doublons (on retire la vidéo si elle existe déjà pour la remettre en haut)
-    history = history.filter(v => v.id !== video.id);
-    
-    // Ajouter au début de la liste avec la date actuelle
-    const videoWithDate = { ...video, watchedAt: new Date().toISOString() };
-    history.unshift(videoWithDate);
-    
-    // stocker seulement les 20 dernières vidéos
-    localStorage.setItem("video_history", JSON.stringify(history.slice(0, 20)));
-  };
-
-  //quitter le lecteur
-  const handleBackToGrid = () => {
-    setVideoPrincipale(null);
-    localStorage.removeItem("last_watched_video");
-  };
-
-  const categories = [
-    "Tout",
-    "Vie de famille",
-    "Éducation",
-    "Thérapie",
-    "Routine",
-  ];
- 
   
-
-  
-
-  const allVideos = [
+  const cartes = [
     {
-      id: 2,
-      titre: "Briser les barrières à Nairobi",
-      categorie: "Éducation",
-      auteur: "Amara K.",
-      pays: "Kenya",
-      duree: "8:15",
-      url: "https://www.youtube.com/embed/e30lKOwMgx8",
-      likes: 124,
-      commentaires: [
-        {
-          id: 101,
-          auteur: "Moussa S.",
-          texte:
-            "L'inclusion scolaire est primordiale, merci pour ce partage !",
-          date: "Il y a 1 jour",
-        },
-        {
-          id: 102,
-          auteur: "Fatou B.",
-          texte: "Très inspirant pour les éducateurs en Afrique.",
-          date: "Il y a 3 heures",
-        },
-      ],
+      title: "Vidéos",
+      background: "./images/pexels-karola-g-7269621.jpg",
+      path:"/ressources/videos",
+      description:"Découvrez tous les aspects de l'autisme en un clic.",
+      icone:<PiVideoBold />
     },
     {
-      id: 3,
-      titre: "Le point de vue d'un père",
-      categorie: "Thérapie",
-      auteur: "David O.",
-      pays: "Ghana",
-      duree: "6:10",
-      url: "https://www.youtube.com/embed/if5sbZHNHUc",
-      likes: 89,
-      commentaires: [
-        {
-          id: 201,
-          auteur: "Kofi A.",
-          texte:
-            "En tant que père, je me reconnais totalement dans ce témoignage.",
-          date: "Il y a 5 jours",
-        },
-        {
-          id: 202,
-          auteur: "Ama M.",
-          texte: "Le courage de ce père est exemplaire.",
-          date: "Il y a 2 jours",
-        },
-      ],
+      title: "Cartes mentales",
+      background: "./images/pexels-karola-g-7296427.jpg",
+      path:"/ressources/pictures",
+      description:"Découvrez des cartes mentales qui relatent votre quotiden.",
+      icone:<SiSecurityscorecard />
     },
     {
-      id: 4,
-      titre: "Art-thérapie : S'exprimer",
-      categorie: "Thérapie",
-      auteur: "Sarah M.",
-      pays: "Afrique du Sud",
-      duree: "5:42",
-      url: "https://www.youtube.com/embed/BsGVUxb9la4",
-      likes: 215,
-      commentaires: [
-        {
-          id: 301,
-          auteur: "Zanele L.",
-          texte: "Les couleurs parlent quand les mots manquent. Magnifique.",
-          date: "Il y a 1 semaine",
-        },
-        {
-          id: 302,
-          auteur: "Jean P.",
-          texte: "Est-ce qu'il existe des centres similaires à Dakar ?",
-          date: "Il y a 4 jours",
-        },
-      ],
+      title: "Jeux",
+      background: "./images/pexels-pavel-danilyuk-8422207.jpg",
+      path:"/ressources/games",
+      description:"Apprendre n'a jamais été facile , jouer dès maintenant!",
+      icone:<SlGameController />
     },
   ];
 
-  // Logique de filtrage pour la grille
-  const videosAffichees = allVideos.filter(
-    (v) => filtreActif === "Tout" || v.categorie === filtreActif
-  );
+  
+      const categories = [
+        "Tout",
+        "Vie de famille",
+        "Éducation",
+        "Routine"
+      ];
 
-  const cartes=[
-    {
-    title:"Vidéos",
-    background:"./images/"
-  },
-  {
-    title:"Cartes mentales",
-    background:"./images/"
-  },
-  {
-    title:"Jeux",
-    background:"./images/"
-  }
-]
-
-  // Vidéos pour la barre de droite
-  const prochainesVideos = videoPrincipale
-    ? allVideos.filter((v) => v.id !== videoPrincipale.id)
-    : [];
 
   return (
     <div style={{ minHeight: "100vh" }}>
-      <div className="container py-5">
-        <div className="row mt-5">
+      <div className="container">
+        <div className="d-flex justify-content-end pt-4">
+                  <div className="w-45">
+            <form className="input-group" role="search">
+                    <span className="bg-background-light  dark:bg-background-dark input-group-text border-end-0 rounded-start-5">
+                        <IoMdSearch size={28} />
+                    </span>
+                    
+                    <input className="form-control p-2 border-start-0 rounded-end-5 shadow-none" 
+                        type="search" 
+                        placeholder="Recherchez un mot clé ..." 
+                        aria-label="Search"
+                        
+                        />
+                </form>
+
+                </div>
+        </div>
+        <div className="row mt-4">
           <div className="col-md-7">
-            <h2 className="fw-bold">
+            <h2 className="fw-bold mt-4">
               Respirer, comprendre et grandir ensemble
             </h2>
             <p className="text-intro">
@@ -182,124 +73,36 @@ const Ressources = () => {
               quotidien. Ici, la sensibilisation devient une source de lumière,
               et chaque ressource est un pas de plus vers une sérénité partagée.
             </p>
-                        <div className="d-flex gap-2 flex-wrap mt-4">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setFiltreActif(cat)}
-                  className={`button-filter ${
-                    filtreActif === cat ? "active" : ""
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-
-            </div>
-            <div className="flex">
-              {cartes.map((carte,index)=>(
-                <div key={index} className="card card-custom rounded-4 shadow-sm" style={{width:"18rem"}}>
-                  <img src={carte.background} className="card-img-top rounded-4" alt={carte.title} />
-                  <h4 className="card-title text-center mt-2">{carte.title}</h4>
-                </div>
-            ))}
-          </div>
-          </div>
-            <div className="col-md-2 photo_coeur">
-              <img src="/images/file_00000000639071fd9e85d753d003dd4f-removebg-preview.png" alt="photo_amour" />
-            </div>
+            
+          </div>  
 
         </div>
-        {videoPrincipale && (
-          <button
-            onClick={() => handleBackToGrid()}
-            className="btn btn-sm  mb-4"
-          >
-            ← Retour à la grille
-          </button>
-        )}
-      </div>
-
-      <div className="container pb-5">
-        {!videoPrincipale ? (
-          <div className="video-grid">
-            {videosAffichees.map((video) => (
-              <VideoCard
-                className="VideoCard"
-                key={video.id}
-                video={video}
-                onClick={(v) =>handleVideoSelect(v)  }
-              />
-            ))}
-          </div>
-        ) : (
-          /* --- MODE LECTEUR --- */
-          <div className="row lecture-container g-4">
-            {/* Colonne de Gauche : Vidéo Principale */}
-            <div className="col-lg-8">
-              <div className="ratio ratio-16x9">
-                <iframe
-                  className="video-frame shadow-sm"
-                  src={videoPrincipale.url}
-                  title={videoPrincipale.titre}
-                  frameBorder="0"
-                  allowFullScreen
-                  style={{ borderRadius: "20px" }}
-                ></iframe>
-              </div>
-              <div className="mt-4">
-                <span className="badge rounded-pill bg-light text-success mb-2 px-3 py-2 border">
-                  {videoPrincipale.categorie}
-                </span>
-                <h1 className="main-video-title h2">{videoPrincipale.titre}</h1>
-                <p className="text-muted">
-                  {videoPrincipale.auteur} • {videoPrincipale.pays}
-                </p>
-                <h5 className="d-flex">
-                  {videoPrincipale.likes} <span className="material-symbols-outlined mx-1">favorite_border</span> •{" "}
-                  {videoPrincipale.commentaires.length} <button className="border-0 "><span className="material-symbols-outlined mx-1" >chat_bubble</span></button>
-                </h5>
-                <h6>Tous les avis</h6>
-                <div className="mt-4">
-                  <div className="comment-list mt-3">
-                    {videoPrincipale.commentaires.map((avis) => (
-                      <div key={avis.id} className="mb-3 p-2 border-bottom">
-                        <div className="d-flex justify-content-between">
-                          <strong>{avis.auteur}</strong>
-                          <small className="text-muted">{avis.date}</small>
-                        </div>
-                        <p className="mb-0">{avis.texte}</p>
-                      </div>
-                    ))}
+           <div className="d-flex gap-4 my-3">
+              {cartes.map((carte, index) => (
+                <NavLink to={carte.path} className="nav-link">
+                    <div
+                  key={index}
+                  className="card cards card-custom rounded-4 shadow-sm"
+                  style={{ width: "22rem"}}
+                >
+                  <div className="bg-primary-custom fs-3 icone-content rounded-pill text-center text-white">{carte.icone}</div>
+                  <img
+                    src={carte.background}
+                    className="card-img-top rounded-4"
+                    alt={carte.title}
+                  />
+                  <div>
+                    <h6 className="card-title text-primary-custom mx-auto py-1 rounded-5 text-center">{carte.title}</h6>
+                    <p className="px-2">{carte.description}</p>
                   </div>
-                </div>
-                <form id="monFormulaire">
-                  <input type="text" id="moncommentaire" className="d-none" placeholder="Entrez votre commentaire ..."/>
-                </form>
-              </div>
+                  </div>
+                </NavLink>
+              ))}
             </div>
 
-            {/* Colonne de Droite*/}
-            <div className="col-lg-4">
-              <div className="sidebar-next p-3 border-start">
-                <h4 className="mb-4 fw-bold">À suivre</h4>
-                <div className="d-flex flex-column gap-3">
-                  {prochainesVideos.map((video) => (
-                    <VideoLine
-                      key={video.id}
-                      video={video}
-                      onClick={(v) => {
-                        setVideoPrincipale(v);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+
       </div>
+
     </div>
   );
 };

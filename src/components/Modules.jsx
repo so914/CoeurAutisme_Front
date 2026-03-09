@@ -31,7 +31,7 @@ const Modules = () => {
     { title: "Sensibilisation", icon: <IoSchoolOutline /> , image: "./images/Gemini_Generated_Image_asg0wgasg0wgasg0.png", link:"/ressources" },
     { title: "Prévention", icon: <MdOutlineMedicalServices />   , image: "./images/Gemini_Generated_Image_d5iwvld5iwvld5iw.png", description: "Guides adaptés à nos réalités",link:"/tests" },
     { title: "Communauté", icon: <MdOutlineDiversity3 /> , image: "./images/Gemini_Generated_Image_31b3bo31b3bo31b3.png", description: "Échangez entre parents.",link:"/communaute" },
-    { title: "Dons", icon: <MdOutlineVolunteerActivism /> , image: "./images/", description: "Soutenez nos actions." }
+    { title: "Dons", icon: <MdOutlineVolunteerActivism /> , image: "./images/Gemini_Generated_Image_ftaltjftaltjftal(1).png", description: "Soutenez nos actions." }
   ];
 
   return (

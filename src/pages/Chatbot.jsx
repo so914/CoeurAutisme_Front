@@ -1,25 +1,24 @@
-import React from 'react';
-import { useOutletContext } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import React, { useState } from 'react';
 import ChatSide from '../components/ChatSide';
 import InterfaceChat from '../components/InterfaceChat';
 
-const Chatbot = () => {
-    // On récupère le thème et la fonction depuis App.jsx via le contexte
-    const { theme, toggleTheme } = useOutletContext();
-  return (
-    <div>
-        <Navbar theme={theme} toggleTheme={toggleTheme}/>
-        <div className="d-flex flex-grow-1 overflow-hidden position-relative">
-          <ChatSide/>
-          <main className="flex-grow-1 overflow-y-auto bg-background-light dark:bg-background-dark">
-            <div className="mx-auto" style={{maxWidth:"930px"}}>
-                <InterfaceChat/>
-            </div>
-         </main>
-        </div>
-    </div>
-  )
-}
+const Chatbot= () => {
+    // l'état pour contrôler les deux enfants
+    const [isSidebarVisible, setSidebarVisible] = useState(true);
 
-export default Chatbot
+    const toggleSidebar = () => setSidebarVisible(!isSidebarVisible);
+
+    return (
+        <div className="d-flex" style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
+            {/* on passe l'état et la fonction au composant Side */}
+            <ChatSide isVisible={isSidebarVisible} toggle={toggleSidebar} />
+
+            {/* le chat prend tout l'espace restant grâce à flex-grow-1 */}
+            <main className="flex-grow-1 h-100 overflow-auto">
+                <InterfaceChat isSidebarVisible={isSidebarVisible} toggleSidebar={toggleSidebar} />
+            </main>
+        </div>
+    );
+};
+
+export default Chatbot;

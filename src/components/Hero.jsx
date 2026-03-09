@@ -1,11 +1,12 @@
 import React from 'react';
+import { NavLink } from "react-router-dom"
 
 const Hero = () => {
   return (
     <header className="container my-4">
       <div className="position-relative rounded-5 overflow-hidden" style={{minHeight: '500px'}}>
         <img 
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9BQ4O-txaiqO2zJeDVsI1AT-Tmav2y2KNrjfa1-cYpbKTL_Hs0Md9tDTnMajBX71Af8g6mplG5vvJzo4XVINtohmCI-_cPLgGP2Hma_Y60JE-O1jErtVPs2L-cvtQCGnTz8GqTInMrCjTpq1nopFLqi5qp196hf2VhnhqcJUyNiHP9dGQs9KD7NNpiHsozQ4pvGsXCrseyri05r7zzQCs6edz4NIAgsFVH0wzERVpdirEKgyy7E0sUwhi7pxr8WSF0AxVwP7iKvb3" 
+          src="./images/ChatGPT Image 8 mars 2026, 12_00_34.png" 
           className="position-absolute w-100 h-100" 
           style={{objectFit: 'cover', zIndex: -1}} 
           alt="garçon autiste souriant"
@@ -20,8 +21,8 @@ const Hero = () => {
           </h1>
           <p className="lead mb-4 opacity-75">Combler les lacunes de diagnostic et de soins grâce à la communauté.</p>
           <div className="d-flex gap-3">
-            <button className="btn btn-primary-custom btn-lg px-4">Commencer ici</button>
-            <button className="btn btn-outline-custom btn-lg px-4">Notre Impact</button>
+            <NavLink className="btn btn-primary-custom btn-lg d-flex align-items-center fs-26 justify-content-center px-2 nav-link" to='/tests'>Commencer ici</NavLink>
+            <button className="btn btn-outline-custom btn-lg p-2">Notre Impact</button>
           </div>
         </div>
       </div>
