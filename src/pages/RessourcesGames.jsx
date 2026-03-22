@@ -25,15 +25,17 @@ const RessourcesGames = () => {
     <div>
         <Navbar theme={theme} toggleTheme={toggleTheme}/>
         <main className='container mt-5 px-3 pt-5'>
-<p className='me-5 pe-5 fs-5 w-100 text-justify my-4 text-muted'>Le jeu est un outil essentiel dans le développement des enfants, et encore plus pour les enfants autistes.
+<p className='me-5 pe-5 fs-6 w-75 fw-thin text-justify my-4 text-muted'>Le jeu est un outil essentiel dans le développement des enfants, et encore plus pour les enfants autistes.
 Sur cette page, nous proposons plusieurs jeux éducatifs et interactifs conçus pour aider les enfants à se détendre, explorer, apprendre et mieux interagir avec le monde qui les entoure.
 
 À travers des activités ludiques et adaptées, les enfants peuvent développer leurs compétences tout en prenant du plaisir. Ces jeux favorisent notamment la communication, l’apprentissage du langage, la concentration et la confiance en soi.
 </p>
           <div className="d-flex flex-wrap gap-3 mt-2">
             {GamesList.map((g)=>(
-              <div key={g.id} className="card mt-4 card-games rounded-4" style={{backgroundImage:`url(${g.picture})`,backgroundSize: "cover",backgroundRepeat: "no-repeat",backgroundPosition: "center"}}>
-              </div>
+              <NavLink className='nav-link' to={g.path}>
+                <div key={g.id} className="card mt-4 card-games rounded-4 cursor-pointer" style={{backgroundImage:`url(${g.picture})`,backgroundSize: "cover",backgroundRepeat: "no-repeat",backgroundPosition: "center"}}>
+                </div>
+              </NavLink>
             ))}
           </div>
         </main>
