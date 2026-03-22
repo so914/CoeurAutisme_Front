@@ -32,6 +32,7 @@ import Map from './pages/Map.jsx';
 import Videos from './pages/Videos.jsx';
 import RessourcesGames from './pages/RessourcesGames.jsx';
 import FruitGame from './pages/FruitGame.jsx';
+import DashboardDiagnostics from './pages/DashboardDiagnostics.jsx';
 
 
 
@@ -43,8 +44,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path='/dashboard/users' exact element={<Users/>} />
+          <Route path='/users' element={<Users/>} />
           <Route path="/login" element={<Login />} />
+          <Route path="/diagnostics" element={<DashboardDiagnostics />} />
           <Route path="/tests" element={<DiagnosticPage />} />
           <Route path="/ressources" exact element={<Ressource />} />
           <Route path="/ressources/videos" exact  element={<Videos/>} />

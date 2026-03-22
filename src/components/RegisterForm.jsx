@@ -101,7 +101,7 @@ const RegisterForm = () => {
   if (step === 'step2') {
     return (
       <div>
-        <div className="mx-auto w-100" style={{ maxWidth: '480px' }}>
+        <div className="mx-auto w-100" style={{ maxWidth: '480px', height:'500px' }}>
           <div>
             <h1 className="h3 fw-bold mb-2">Bienvenue parmi nous</h1>
             <p className="text-success small">Veuillez entrer vos informations pour créer votre compte.</p>

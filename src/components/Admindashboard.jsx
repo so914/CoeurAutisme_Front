@@ -47,7 +47,7 @@ const AdminDashboard = () => {
         ))}
       </div>
       
-      {/* Tu pourras ajouter ici tes graphiques et tableaux */}
+      {/* graphiques et tableaux peut être */}
     </div>
   );
 };

@@ -10,12 +10,12 @@ import { IoSettings } from "react-icons/io5"
 
 const Sidebar = () => {
   const menuItems = [                                                                                                                                                 
-    { icon: <SiSimpleanalytics />, label: 'Statistiques',lien:'/dashboard' },
-    { icon: <MdOutlineGroup /> , label: 'Users',lien:'/dashboard/users' },                                                                                                                                         
-    { icon: <MdOutlineMenuBook />, label: 'Modules', lien:'/modules' },
-    { icon: <MdOutlineMedicalServices />, label: 'Diagnostics',lien:'/diagnostics' },
-    { icon: <FaMap />, label: 'Regions', lien:'/map' },
-    { icon: <IoSettings />, label: 'Settings',lien:'/settings' },
+    { icon: <SiSimpleanalytics size={20}/>, label: 'Statistiques',lien:'/dashboard' },
+    { icon: <MdOutlineGroup size={20}/> , label: 'Users',lien:'/users' },                                                                                                                                         
+    { icon: <MdOutlineMenuBook size={20}/>, label: 'Modules', lien:'/modules' },
+    { icon: <MdOutlineMedicalServices size={20}/>, label: 'Diagnostics',lien:'/diagnostics' },
+    { icon: <FaMap size={20}/>, label: 'Regions', lien:'/map' },
+    { icon: <IoSettings size={20}/>, label: 'Settings',lien:'/settings' },
   ];
 
   return (
@@ -31,7 +31,7 @@ const Sidebar = () => {
         {menuItems.map((item, idx) => (
           <NavLink key={idx} to={item.lien} 
              className={({ isActive })=>`nav-link d-flex align-items-center gap-3 px-3 py-2 mb-2 rounded-3 transition-all ${
-              isActive ? 'active-custom' : 'text-dark dark:text-light'
+              isActive ? 'active-custom' : 'text-muted dark:text-light'
             }`}>
             <span className="material-symbols-outlined">{item.icon}</span>
             <span className="fw-medium">{item.label}</span>

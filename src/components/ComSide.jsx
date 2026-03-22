@@ -15,11 +15,11 @@ const ComSide = () => {
         
             <nav className="nav flex-column gap-2 flex-grow-1">
                 {[
-                    { to: "/communaute", icon: <MdTravelExplore />, label: "Explorer",exact: true },
-                    { to: "/communaute/sujets", icon: <MdOutlineSubject/>, label: "Sujets" },
-                    { to: "/ressources", icon: <MdOutlineMenuBook/>, label: "Ressources" },
-                    { to: "/communaute/all", icon: <MdOutlineDiversity1 />, label: "Mes communautés" },
-                    { to: "register/communaute", icon: <IoAddSharp />, label: "Créer une communauté" }
+                    { to: "/communaute", icon: <MdTravelExplore size={20}/>, label: "Explorer",exact: true },
+                    { to: "/communaute/sujets", icon: <MdOutlineSubject size={20}/>, label: "Sujets" },
+                    { to: "/ressources", icon: <MdOutlineMenuBook size={20}/>, label: "Ressources" },
+                    { to: "/communaute/all", icon: <MdOutlineDiversity1 size={20}/>, label: "Mes communautés" },
+                    { to: "register/communaute", icon: <IoAddSharp size={20}/>, label: "Créer une communauté" }
                 ].map((link) => (
                     <NavLink 
                       key={link.to}
@@ -27,7 +27,7 @@ const ComSide = () => {
                       end={link.exact}
                       className={({ isActive }) => `nav-link d-flex align-items-center gap-3 p-3 rounded-3 ${isActive ? 'active-custom' : 'text-muted'}`}
                     >
-                      <span className="material-symbols-outlined">{link.icon}</span> {link.label}
+                      <span>{link.icon}</span> {link.label}
                     </NavLink>
                 ))}
             </nav>

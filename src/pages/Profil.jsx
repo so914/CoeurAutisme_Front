@@ -21,7 +21,7 @@ const Profil = () => {
             <div className="card-img">
               <img
                 className="rounded-pill mt-3"
-                src="./Gemini_Generated_Image_d3cwmhd3cwmhd3cw.png"
+                src="./images/someone.webp"
                 alt="Profil"
               />
 
