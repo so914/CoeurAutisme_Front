@@ -11,7 +11,7 @@ const Ressources = () => {
   const cartes = [
     {
       title: "Vidéos",
-      background: "./images/pexels-karola-g-7269621.jpg",
+      background: "./images/autisme_parent_enfant_video_section.webp",
       path:"/ressources/videos",
       description:"Découvrez tous les aspects de l'autisme en un clic.",
       icone:<PiVideoBold />
@@ -33,14 +33,6 @@ const Ressources = () => {
   ];
 
   
-      const categories = [
-        "Tout",
-        "Vie de famille",
-        "Éducation",
-        "Routine"
-      ];
-
-
   return (
     <div style={{ minHeight: "100vh" }}>
       <div className="container">

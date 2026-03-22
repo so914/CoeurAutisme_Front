@@ -199,11 +199,11 @@ const handleSaveAnswer = (text) => {
         <main className="flex-grow-1 overflow-y-auto p-4 md:p-5">
           <div className="mx-auto" style={{ maxWidth: '900px' }}>
             {!isActif ? (
-              <section className="py-5 bg-light rounded-4">
+              <section className="py-5 rounded-4">
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-12">
-                      <h1 className="display-6 fw-bold text-dark mb-4 text-center">
+                      <h1 className="display-6 fw-bold light:text-dark mb-4 text-center dark:text-white">
                         L’importance d’un diagnostic précoce pour un <span className="text-primary-custom">avenir mieux préparé</span>.
                       </h1>
                       <p className="text-secondary mb-5 text-center" style={{ lineHeight: "1.9" }}>
@@ -213,7 +213,7 @@ const handleSaveAnswer = (text) => {
                         <button className="btn btn-primary-custom btn-lg px-5 py-3 rounded-2" onClick={() => setActif(true)}>
                           Faire le premier pas
                         </button>
-                        <div className="card border-0 bg-white shadow-sm p-4 text-start" style={{ maxWidth: "750px" }}>
+                        <div className="card border-0  shadow-sm p-4 text-start" style={{ maxWidth: "750px" }}>
                           <div className="d-flex gap-3">
                             <div className="text-color fs-3"><AiOutlineInfoCircle /></div>
                             <p className="small mb-0 text-muted">

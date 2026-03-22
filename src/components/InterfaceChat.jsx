@@ -1,4 +1,9 @@
 import React from 'react'
+import { CiLocationArrow1 } from "react-icons/ci";
+import { BsInfoCircle } from "react-icons/bs";
+import { IoMenu } from "react-icons/io5";
+import { CgMoreVerticalAlt } from "react-icons/cg";
+
 
 const InterfaceChat = ({ isSidebarVisible, toggleSidebar }) => {
   return (
@@ -7,12 +12,13 @@ const InterfaceChat = ({ isSidebarVisible, toggleSidebar }) => {
             <div className="col-md-9 d-flex align-items-center">
                 <div className="flex">
                 {!isSidebarVisible && (
-                    <span onClick={toggleSidebar} className="material-symbols-outlined me-3 cursor-pointer" >
-                        menu
+                    <span onClick={toggleSidebar} className="me-3 cursor-pointer" >
+                       <IoMenu size={24}/>
                     </span>
                 )}
                </div>
                  <div className="d-flex align-items-center circle rounded-pill">
+                    <div className="rounded-pill point"></div>
                     <img 
                         className="logo-image d-inline-block rounded-5 m-auto" 
                         src="./images/ChatGPT Image 8 janv. 2026, 16_42_48.png" 
@@ -28,12 +34,12 @@ const InterfaceChat = ({ isSidebarVisible, toggleSidebar }) => {
                 </div>
             </div>
             <div className="col-md-3 d-flex justify-content-end">
-                <span className="material-symbols-outlined">more_vert</span>
+                <span className="p-2 rounded-pill bg-primary-custom "><CgMoreVerticalAlt /></span>
             </div>
         </div>
-            <div className='container my-5 mb-5' style={{minHeight:"320px"}}>
-                <div className='m-5 p-3 '>
-                    <div className="mt-5 text-center align-items-center">
+            <div className='container d-flex align-items-center justify-content-center' style={{minHeight:"320px"}}>
+                <div>
+                    <div className="text-center align-items-center">
                         <h4>Bonjour , comment puis-je vous aider aujourd'hui?</h4>
                     </div>
                 </div> 
@@ -41,18 +47,18 @@ const InterfaceChat = ({ isSidebarVisible, toggleSidebar }) => {
             <div className="container">
                 <form className='mx-4'>
                     <div className='input-group custom-pass-group '>
-                        <input type="text" className='form-control p-3 border-end-0 rounded-start-4' placeholder="Demandez moi n'importe quoi concernant l'autisme ..." />
-                        <button className='input-group-text rounded-end-4 bg-background-light dark:bg-background-dark' >
-                            <span className="material-symbols-outlined rounded-pill p-3" style={{backgroundColor:'var(--primary-dark)'}}>send</span>
+                        <input type="text" className='form-control border-end-0 px-3 rounded-start-5 input-p' placeholder="Demandez moi n'importe quoi concernant l'autisme ..." />
+                        <button className='input-group-text rounded-end-5 bg-background-light dark:bg-background-dark' >
+                            <span className="rounded-pill p-2 bg-primary-custom text-white m-1"> <CiLocationArrow1 size={28} /></span>
                         </button>
                     </div>
                 </form>
                 <div className="container px-5 mx-5">
-                    <p className='d-flex my-3'><span className="material-symbols-outlined me-2">info</span> SIA peut se tromper dans ses réponses, il est important de vérifier chaque réponse fournie</p>
+                    <p className='d-flex my-3'><span className=" me-2"><BsInfoCircle/></span> SIA peut se tromper dans ses réponses, il est important de vérifier chaque réponse fournie</p>
                 </div>
             </div>
     </div>
   )
 }
 
-export default InterfaceChat
+export default InterfaceChat;

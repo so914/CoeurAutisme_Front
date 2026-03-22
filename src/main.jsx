@@ -31,6 +31,9 @@ import Users from './pages/Users.jsx';
 import Map from './pages/Map.jsx';
 import Videos from './pages/Videos.jsx';
 import RessourcesGames from './pages/RessourcesGames.jsx';
+import FruitGame from './pages/FruitGame.jsx';
+
+
 
 createRoot(document.getElementById('root')).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
@@ -46,6 +49,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/ressources" exact element={<Ressource />} />
           <Route path="/ressources/videos" exact  element={<Videos/>} />
           <Route path="/ressources/games" exact element={<RessourcesGames/>} />
+          <Route path="/fruit-game" element={<FruitGame />} />
           <Route path="/register" element={<Register />} />
           <Route path="/chat" element={<Chatbot />} />
           <Route path="/infrastructures" element={<Infrastructures />} />

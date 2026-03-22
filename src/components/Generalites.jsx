@@ -439,6 +439,9 @@ const Generalites = () => {
               key={com.id}
               className="card cart-community rounded-5 p-2 shadow-sm border-0"
               style={{ width: "18rem", cursor: "pointer" }}
+                                onClick={() => {
+                    setActif(com);
+                  }}
             >
               <img
                 src={com.coverImage}
@@ -467,11 +470,7 @@ const Generalites = () => {
                 </div>
 
                 <button
-                  className="btn btn-primary-custom w-100 rounded-pill mt-3"
-                  onClick={() => {
-                    setActif(com);
-                  }}
-                >
+                  className="btn btn-primary-custom w-100 rounded-pill mt-3">
                   Voir plus
                 </button>
               </div>

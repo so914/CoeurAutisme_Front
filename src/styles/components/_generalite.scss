@@ -40,3 +40,58 @@
           transform: translateY(-5px);
           box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
         }
+
+
+/* Cartes sujets */
+.topic-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.topic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Tendances */
+.trend-card {
+  transition: all 0.25s ease;
+}
+
+.trend-card:hover {
+  transform: scale(1.01);
+  background-color: rgba(0,0,0,0.02);
+}
+
+/* Numéro tendance */
+.trend-rank {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f46e5, #9333ea);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.community-card {
+  transition: 0.3s;
+}
+
+.community-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.post-card {
+  transition: 0.2s;
+}
+
+.btn-outline-primary-custom{
+  border:2px solid var(--primary-dark) !important;
+}
+.post-card:hover {
+  background: rgba(0,0,0,0.02);
+}

@@ -43,9 +43,9 @@ const Modules = () => {
                       <Sidebar />                      
                       <main className={`flex-grow-1 p-4 ${theme === 'dark' ? 'bg-dark text-white' : 'bg-light'}`}>
                         <div className="container mb-3">
-                            <div className="row">
+                            <div className="row mt-4">
                               <div className="col-md-9">
-                                <h3>Gestion des modules</h3>
+                                <h3 className='fw-bolder'>Gestion des modules</h3>
                               </div>
                               <div className="col-md-3 d-flex justify-content-end">
                                 <NavLink to='/register/modules' className="btn btn-primary-custom nav-link d-flex align-items-center rounded-3 p-2" style={{width:"80%"}}>
@@ -56,7 +56,7 @@ const Modules = () => {
                             
                             </div>
                             {categories.map((c)=>(
-                                <button className='border-0 m-2 p-2 rounded-4' key={c} onClick={()=>setActif(c)}>{c}</button>
+                                <button className='border-0 m-2 py-2 px-3 rounded-4' key={c} onClick={()=>setActif(c)}>{c}</button>
                             ))}
                         </div>
                         <div className="container">

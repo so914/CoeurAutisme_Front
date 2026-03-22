@@ -4,7 +4,10 @@ import { MdDiversity1 } from "react-icons/md";
 import { LuSquareSplitHorizontal } from "react-icons/lu";
 import { FiEdit } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
-
+import { MdOutlineDiversity1,MdOutlineMenuBook } from "react-icons/md";
+import { LuBrain } from "react-icons/lu";
+import { TbMap2 } from "react-icons/tb";
+import { IoMdHome } from "react-icons/io";
 
 
 const ChatSide = ({ isVisible, toggle }) => {
@@ -42,8 +45,18 @@ const ChatSide = ({ isVisible, toggle }) => {
                     <span>Nouveau chat</span>
                 </div>
                 <div className='d-flex align-items-center cursor-pointer'>
-                    <span className="me-2"><IoMdSearch size={22} /></span>
-                    <span>Rechercher des chats</span>
+                    <form className="input-group" role="search">
+                                        <span className="bg-background-light ps-2 pe-1 dark:bg-background-dark input-group-text border-end-0 rounded-start-5">
+                                            <IoMdSearch size={18} />
+                                        </span>
+                                        
+                                        <input className="form-control py-2 border-start-0 rounded-end-5 shadow-none" 
+                                            type="search" 
+                                            placeholder="Recherchez des chats" 
+                                            aria-label="Search"
+                                            
+                                            />
+                                    </form>
                 </div>
             </div>
 
@@ -60,26 +73,25 @@ const ChatSide = ({ isVisible, toggle }) => {
 
             <hr className="mx-3" />
             <div className="mt-auto px-3">
-                 <div className="d-flex align-items-center">
+
                                 <nav className="nav flex-column gap-2 flex-grow-1">
                                     {[
-                                        { to: "/accueil", icon: <MdTravelExplore />, label: "Accueil",exact: true },
-                                        { to: "/tests", icon: <MdOutlineSubject/>, label: "Tests" },
-                                        { to: "/ressources", icon: <MdOutlineMenuBook/>, label: "Ressources" },
-                                        { to: "/communaute/all", icon: <MdOutlineDiversity1 />, label: "Mes communautés" },
-                                        { to: "/infrastructures", icon: <IoAddSharp />, label: "Infrastructures" }
+                                        { to: "/", icon: <IoMdHome size={20} />, label: "Accueil", exact: true },
+                                        { to: "/tests", icon:<LuBrain size={20} /> , label: "Tests" },
+                                        { to: "/ressources", icon: <MdOutlineMenuBook size={20} />, label: "Ressources" },
+                                        { to: "/communaute/all", icon: <MdOutlineDiversity1 size={20} />, label: "Mes communautés" },
+                                        { to: "/infrastructures", icon: <TbMap2 size={20} />, label: "Infrastructures" }
                                     ].map((link) => (
                                         <NavLink 
                                           key={link.to}
                                           to={link.to} 
                                           end={link.exact}
-                                          className={({ isActive }) => `nav-link d-flex align-items-center gap-3 p-3 rounded-3 ${isActive ? 'active-custom' : 'text-muted'}`}
+                                          className={({ isActive }) => `nav-link d-flex gap-3 p-2  align-items-center rounded-3 cursor-pointer ${isActive ? 'active-custom' : 'text-muted'}`}
                                         >
-                                          <span >{link.icon}</span> {link.label}
+                                          <span>{link.icon}</span> {link.label}
                                         </NavLink>
                                     ))}
                                 </nav>
-                 </div>
             </div>
         </aside>
     );

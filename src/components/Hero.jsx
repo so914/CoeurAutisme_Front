@@ -21,8 +21,8 @@ const Hero = () => {
           </h1>
           <p className="lead mb-4 opacity-75">Combler les lacunes de diagnostic et de soins grâce à la communauté.</p>
           <div className="d-flex gap-3">
-            <NavLink className="btn btn-primary-custom btn-lg d-flex align-items-center fs-26 justify-content-center px-2 nav-link" to='/tests'>Commencer ici</NavLink>
-            <button className="btn btn-outline-custom btn-lg p-2">Notre Impact</button>
+            <NavLink className="btn btn-primary-custom btn-lg d-flex align-items-center fs-26 justify-content-center px-3 nav-link" to='/tests'>Commencer ici</NavLink>
+            <NavLink to="#impact" className="btn btn-outline-custom btn-lg p-2">Notre Impact</NavLink>
           </div>
         </div>
       </div>

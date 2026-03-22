@@ -140,21 +140,21 @@ const InfraSide = () => {
                   return centres.nom.includes(search)
                 })
                 .map((centres)=>(
-                    <div className="card shadow border-0 rounded-4 mb-4" key={centres.id} style={{width:'99%',height:"auto"}}>
-                        <img src={centres.image} alt="image_infra" className="card-img-top " style={{width:'99%',height:"150px"}}/>
+                    <div className="card shadow border-0 rounded-4 mb-4" key={centres.id} style={{width:'78%',height:"auto"}}>
+                        <img src={centres.image} alt="image_infra" className="card-img-top " style={{width:'100%',height:"150px"}}/>
                         <div className="card-body">
-                            <div className="row fw-bolder">
+                            <div className="row fw-bolder px-2">
                                 <div className="col-md-10"><h6>{centres.nom}</h6></div>
-                                <div className="bg-background-light dark:bg-background-dark d-flex col-md-2 px-3 rounded-4 span-note"><span >{centres.note}</span><span className="material-symbols-outlined fs-5">star</span></div>
+                                <div className="bg-background-light dark:bg-background-dark d-flex col-md-2 rounded-4 span-note"><span >{centres.note}</span><span className="material-symbols-outlined fs-5">star</span></div>
                             </div>
                             <p className='d-flex locate'><span className="material-symbols-outlined fs-5">location_on</span>{centres.localisation.lieu} | {centres.localisation.ville} <span className='mx-4'>Situé à: {centres.distance}</span></p>
                             {centres.services.map((srv,index)=>(
                                 <button key={index} className='border-0 rounded-4 p-2 mx-1 fs-petite'>{srv}</button>
                             ))}
                             <hr />
-                            <div className="d-flex gap-3">
-                                <button className="btn btn-primary-custom fw-bolder px-5 rounded-pill">Contact</button>
-                                <button className='btn btn-sec-custom px-5' >Détails</button>
+                            <div className="d-flex gap-3 justify-content-between">
+                                <button className="btn btn-primary-custom fw-bolder px-4 rounded-pill">Contact</button>
+                                <button className='btn btn-sec-custom px-4' >Détails</button>
                             </div>
                         </div>
                     </div>

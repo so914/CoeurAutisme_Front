@@ -11,7 +11,7 @@ import { IoSettings } from "react-icons/io5"
 const Sidebar = () => {
   const menuItems = [                                                                                                                                                 
     { icon: <SiSimpleanalytics />, label: 'Statistiques',lien:'/dashboard' },
-    { icon: <MdOutlineGroup /> , label: 'Users',lien:'/users' },                                                                                                                                         
+    { icon: <MdOutlineGroup /> , label: 'Users',lien:'/dashboard/users' },                                                                                                                                         
     { icon: <MdOutlineMenuBook />, label: 'Modules', lien:'/modules' },
     { icon: <MdOutlineMedicalServices />, label: 'Diagnostics',lien:'/diagnostics' },
     { icon: <FaMap />, label: 'Regions', lien:'/map' },

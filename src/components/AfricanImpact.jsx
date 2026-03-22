@@ -2,7 +2,7 @@ import React from 'react';
 
 const AfricanImpact = () => {
   return (
-    <section className="py-5 overflow-hidden">
+    <section className="py-5 overflow-hidden" id="impact">
       <div className="container py-4">
         <div className="row align-items-center g-5">
           
