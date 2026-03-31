@@ -33,7 +33,9 @@ import Videos from './pages/Videos.jsx';
 import RessourcesGames from './pages/RessourcesGames.jsx';
 import FruitGame from './pages/FruitGame.jsx';
 import DashboardDiagnostics from './pages/DashboardDiagnostics.jsx';
-
+import MaVoixMagique from './pages/MaVoixMagique.jsx';
+import MesSuperPouvoirs from './pages/MesSuperPouvoirs.jsx';
+import UniKids from './pages/UniKids.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -52,6 +54,9 @@ createRoot(document.getElementById('root')).render(
           <Route path="/ressources/videos" exact  element={<Videos/>} />
           <Route path="/ressources/games" exact element={<RessourcesGames/>} />
           <Route path="/fruit-game" element={<FruitGame />} />
+          <Route path='/ma-voix-magique' element={<MaVoixMagique />} />
+          <Route path='/mes-super-pouvoirs' element={<MesSuperPouvoirs />} />
+          <Route path='/unikids' element={<UniKids />} />
           <Route path="/register" element={<Register />} />
           <Route path="/chat" element={<Chatbot />} />
           <Route path="/infrastructures" element={<Infrastructures />} />

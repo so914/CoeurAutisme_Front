@@ -7,6 +7,7 @@ export default defineConfig({
   server:{
     host:true,
     port:5173,
+    allowedHosts:['unconcerted-mila-lamely.ngrok-free.dev'],
     watch:{
       usePolling:true,
     }, 

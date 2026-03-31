@@ -167,7 +167,7 @@ const DetailModal = ({ diag, onClose }) => {
         <div style={{ padding:"28px 32px 20px", borderBottom:"1px solid #f1f5f9", display:"flex", justifyContent:"space-between", alignItems:"flex-start" }}>
           <div>
             <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:6 }}>
-              <div style={{ width:40, height:40, borderRadius:12, background:"linear-gradient(135deg,#6366f1,#8b5cf6)", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:16 }}>
+              <div style={{ width:40, height:40, borderRadius:12, background:"var(--primary-dark)", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:16 }}>
                 {diag.userName[0]}
               </div>
               <div>
@@ -295,7 +295,7 @@ const DashboardDiagnostics = () => {
       </div>
 
       <div style={{ display:"flex", flexGrow:1 }}>
-        <Sidebar theme={theme} toggleTheme={toggleTheme}/>
+        <Sidebar                                            />
 
         <main style={{ flexGrow:1, padding:"32px 36px", overflowY:"auto" }}>
           
@@ -348,7 +348,7 @@ const DashboardDiagnostics = () => {
           {/* ── Tableau ── */}
           <div style={{ background:card, borderRadius:16, border:`1px solid ${bdr}`, overflow:"hidden" }}>
             {/* En-tête tableau */}
-            <div style={{ display:"grid", gridTemplateColumns:"2fr 1fr 1fr 1.5fr 80px 120px", gap:0, padding:"14px 24px", background: dark?"bg-primary-custom":"#f8fafc", borderBottom:`1px solid ${bdr}` }}>
+            <div style={{ display:"grid", gridTemplateColumns:"2fr 1fr 1fr 1.5fr 80px 120px", gap:0, padding:"14px 24px", background: dark?"bg-dark":"bg-light", borderBottom:`1px solid ${bdr}` }}>
               {["Utilisateur","Profil","Statut","Score / Étapes","Signalé","Actions"].map(h=>(
                 <div key={h} style={{ fontSize:12, fontWeight:700, color:sub, textTransform:"uppercase", letterSpacing:".6px" }}>{h}</div>
               ))}
@@ -357,7 +357,7 @@ const DashboardDiagnostics = () => {
  
             {filtered.length === 0 ? (
               <div style={{ padding:"60px 24px", textAlign:"center", color:sub }}>
-                <div style={{ fontSize:40, marginBottom:12 }}>🔍</div>
+                <div style={{ fontSize:40, marginBottom:12 }}><span className="material-symbols-outlined ">search</span></div>
                 <div style={{ fontWeight:600 }}>Aucun diagnostic trouvé</div>
               </div>
             ) : filtered.map((d, i) => {
@@ -369,7 +369,7 @@ const DashboardDiagnostics = () => {
                 >
  
                   <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-                    <div style={{ width:36, height:36, borderRadius:10, background:"linear-gradient(135deg,#6366f1,#8b5cf6)", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:14, flexShrink:0 }}>
+                    <div style={{ width:36, height:36, borderRadius:10, background:"var(--primary-dark)", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:14, flexShrink:0 }}>
                       {d.userName[0]}
                     </div>
                     <div>

@@ -18,6 +18,13 @@ const RessourcesGames = () => {
         picture:"",
         description:"",
         path:"/ma-voix-magique"
+      },
+      {
+        id:3,
+        name:"Mes supers pouvoirs",
+        picture:"../images/doudou safe/super_pouvoirs.png",
+        description:"",
+        path:"/mes-super-pouvoirs"
       }
       
     ]

@@ -13,6 +13,20 @@ const Navbar = ({ theme, toggleTheme }) => {
     return (savedUser && token) ? JSON.parse(savedUser) : null;
   });
 
+  const [isClicked,setClicked]=useState(false);
+  const showMenu=()=>{
+    setClicked(!isClicked);
+    console.log(isClicked);
+  }
+
+  useEffect(() => {
+  if (isClicked) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+}, [isClicked]);
+
   useEffect(() => {
     const checkAuth = () => {
       const savedUser = localStorage.getItem('user_data');
@@ -29,6 +43,8 @@ const Navbar = ({ theme, toggleTheme }) => {
 
     return () => window.removeEventListener('storage', checkAuth);
   }, []);
+
+  
 
   const handleLogout = async () => {
     try {
@@ -73,9 +89,35 @@ const Navbar = ({ theme, toggleTheme }) => {
           type="button" 
           data-bs-toggle="collapse" 
           data-bs-target="#navbarNav"
+          onClick={showMenu}
         >
-          <span className="navbar-toggler-icon"></span>
+          {!isClicked ? <span className="navbar-toggler-icon"></span> : <span>X</span>}
         </button>
+
+        {isClicked && (
+                    <div className="mobile-menu position-fixed background-light top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+       style={{  zIndex: 999 }}>
+          <ul className="navbar-nav list-style text-center w-100">
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/">Accueil</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/tests">Tests</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/ressources">Ressources</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/infrastructures">Infrastructures</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/communaute">Communauté</NavLink>
+            </li>
+          </ul> </div>
+                )}
+                <div id="MobileNav" className='d-none'>
+
+          </div>
 
 
         <div className="collapse navbar-collapse" id="navbarNav">

@@ -1,24 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ChatSide from '../components/ChatSide';
 import InterfaceChat from '../components/InterfaceChat';
 
-const Chatbot= () => {
-    // l'état pour contrôler les deux enfants
-    const [isSidebarVisible, setSidebarVisible] = useState(true);
+const Chatbot = () => {
+  const [isSidebarVisible, setSidebarVisible] = useState(window.innerWidth >= 768);
 
-    const toggleSidebar = () => setSidebarVisible(!isSidebarVisible);
+  const toggleSidebar = () => setSidebarVisible(!isSidebarVisible);
 
-    return (
-        <div className="d-flex" style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
-            {/* on passe l'état et la fonction au composant Side */}
-            <ChatSide isVisible={isSidebarVisible} toggle={toggleSidebar} />
+  
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setSidebarVisible(true); // desktop
+      } else {
+        setSidebarVisible(false); // mobile
+      }
+    };   
 
-            {/* le chat prend tout l'espace restant grâce à flex-grow-1 */}
-            <main className="flex-grow-1 h-100 overflow-auto">
-                <InterfaceChat isSidebarVisible={isSidebarVisible} toggleSidebar={toggleSidebar} />
-            </main>
-        </div>
-    );
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (
+    <div className="d-flex position-relative" style={{ height: "100vh", overflow: "hidden" }}>
+
+      <div
+        className={`chat-sidebar ${isSidebarVisible ? 'show' : ''}`}
+      >
+        <ChatSide isVisible={isSidebarVisible} toggle={toggleSidebar} />
+      </div>
+
+      {isSidebarVisible && window.innerWidth < 768 && (
+        <div
+          className="overlay"
+          onClick={toggleSidebar}
+        ></div>
+      )}
+
+      <main className="flex-grow-1 h-100 overflow-auto">
+        <InterfaceChat toggleSidebar={toggleSidebar} />
+      </main>
+    </div>
+  );
 };
 
 export default Chatbot;

@@ -1,4 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { FaMicrophone } from "react-icons/fa6";
+import { FiArrowLeftCircle } from "react-icons/fi";
+
+
 
 /* ══ ASSETS ═══════════════════════════════════════════════════════════ */
 const A = {
@@ -163,7 +167,7 @@ function WordOrb({ letter, onRemove }) {
       onClick={onRemove}
       onKeyDown={e => (e.key === "Enter" || e.key === " ") && onRemove()}
       style={{
-        width: 72, height: 72, borderRadius: "50%",
+        width: 60, height: 60, borderRadius: "50%",
         background: "linear-gradient(135deg,#E8D5F2,#D5C6E8)",
         display: "flex", alignItems: "center", justifyContent: "center",
         fontSize: 32, fontWeight: 700, fontFamily: "'Poppins',sans-serif",
@@ -186,7 +190,7 @@ function WordOrb({ letter, onRemove }) {
 function EmptyOrb() {
   return (
     <div style={{
-      width: 72, height: 72, borderRadius: "50%",
+      width: 60, height: 60, borderRadius: "50%",
       background: "rgba(213,198,232,.25)",
       boxShadow: "0 2px 8px rgba(168,216,234,.15), inset 0 1px 3px rgba(255,255,255,.3)",
     }} />
@@ -222,43 +226,32 @@ export default function MaVoixMagique() {
     setTimeout(() => setScreen("welcome"), 700);
   }, []);
 
-  /* ── Voice selection ── */
-  const loadVoice = useCallback(() => {
-    const v = pickBestVoice();
-    if (v) {
-      voiceRef.current = v;
-      setVoiceName(`${v.name.split(" ")[0]} · ${v.lang} 🎙️`);
-      setVoiceInfo(`🎙 Voix : ${v.name}`);
-    } else {
-      setVoiceInfo("⚠ Aucune voix française – voix système utilisée");
-    }
+  /* ── Voice selection ──────────────────────────────────────────────────
+     applyVoice() met à jour ref + state.
+     L'effect ne l'appelle JAMAIS directement dans son body :
+     il enregistre uniquement un listener externe (onvoiceschanged)
+     et des setTimeout, ce qui satisfait react-hooks/set-state-in-effect.
+  ── */
+  const applyVoice = useCallback((v) => {
+    if (!v) { setVoiceInfo("⚠ Aucune voix française – voix système utilisée"); return; }
+    voiceRef.current = v;
+    setVoiceName(`${v.name.split(" ")[0]} · ${v.lang} 🎙️`);
+    setVoiceInfo(`🎙 Voix : ${v.name}`);
   }, []);
 
   useEffect(() => {
     if (!window.speechSynthesis) return;
-    window.speechSynthesis.onvoiceschanged = loadVoice;
-    loadVoice();
-    const t1 = setTimeout(loadVoice, 800);
-    return () => clearTimeout(t1);
-  }, [loadVoice]);
-
-  /* ── Physical keyboard ── */
-  useEffect(() => {
-    if (screen !== "workshop") return;
-    const handler = e => {
-      if (e.key === "Backspace") {
-        e.preventDefault();
-        setLetters(prev => prev.slice(0, -1));
-      } else if (e.key === "Enter") {
-        handleSpeak();
-      } else if (e.key.length === 1 && /[a-zA-Z]/.test(e.key)) {
-        playBell();
-        setLetters(prev => [...prev, e.key.toUpperCase()]);
-      }
+    // onvoiceschanged = callback externe → setState autorisé
+    window.speechSynthesis.onvoiceschanged = () => applyVoice(pickBestVoice());
+    // Tentatives différées : Firefox/Safari chargent les voix en async
+    const t1 = setTimeout(() => applyVoice(pickBestVoice()), 100);
+    const t2 = setTimeout(() => applyVoice(pickBestVoice()), 900);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      window.speechSynthesis.onvoiceschanged = null;
     };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [screen]); // eslint-disable-line
+  }, [applyVoice]);
 
   /* ── Audio helpers ── */
   function initACtx() {
@@ -284,7 +277,7 @@ export default function MaVoixMagique() {
 
   function startMusic() {
     if (!musicBufRef.current || !actxRef.current) return;
-    if (musicSrcRef.current) { try { musicSrcRef.current.stop(); } catch (_) {} }
+    if (musicSrcRef.current) { try { musicSrcRef.current.stop(); } catch (e) { console.warn(e); } }
     musicSrcRef.current        = actxRef.current.createBufferSource();
     musicSrcRef.current.buffer = musicBufRef.current;
     musicSrcRef.current.loop   = true;
@@ -301,7 +294,7 @@ export default function MaVoixMagique() {
   }
 
   /* ── TTS ── */
-  function handleSpeak() {
+  const handleSpeak = useCallback(() => {
     if (!letters.length) return;
     const word = letters.join("");
     window.speechSynthesis.cancel();
@@ -315,7 +308,25 @@ export default function MaVoixMagique() {
     const done = () => setSpeaking(false);
     u.onend = done; u.onerror = done;
     window.speechSynthesis.speak(u);
-  }
+  }, [letters]);
+
+  /* ── Physical keyboard ── */
+  useEffect(() => {
+    if (screen !== "workshop") return;
+    const handler = e => {
+      if (e.key === "Backspace") {
+        e.preventDefault();
+        setLetters(prev => prev.slice(0, -1));
+      } else if (e.key === "Enter") {
+        handleSpeak();
+      } else if (e.key.length === 1 && /[a-zA-Z]/.test(e.key)) {
+        playBell();
+        setLetters(prev => [...prev, e.key.toUpperCase()]);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [screen, handleSpeak]); // playBell uses only refs → stable sans useCallback
 
   /* ── Screen transitions ── */
   async function goToWorkshop() {
@@ -344,7 +355,7 @@ export default function MaVoixMagique() {
   ══════════════════════════════════════════════════════════════════ */
   return (
     <div style={{
-      position: "relative", width: "100%", height: "100vh",
+      position: "relative", width: "100%", height: "830px",
       background: "linear-gradient(180deg,#E8D5F2 0%,#C5E7F5 100%)",
       fontFamily: "'Quicksand',sans-serif", overflow: "hidden",
     }}>
@@ -356,7 +367,7 @@ export default function MaVoixMagique() {
           background: "linear-gradient(180deg,#E8D5F2,#C5E7F5)",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
-          <p style={{ fontSize: 28, color: "white", fontWeight: 600 }}>✨ Chargement…</p>
+          <p style={{ fontSize: 28, color: "white", fontWeight: 600 }}>Chargement…</p>
         </div>
       )}
 
@@ -387,7 +398,7 @@ export default function MaVoixMagique() {
           <h1 style={{
             fontSize: "clamp(38px,7vw,64px)", fontWeight: 700, color: "white",
             textShadow: "0 4px 20px rgba(80,40,140,.35)",
-            textAlign: "center", padding: "0 24px",
+            textAlign: "center"
           }}>
             Ma Voix Magique
           </h1>
@@ -481,25 +492,24 @@ export default function MaVoixMagique() {
               aria-label="Retour" onClick={goToWelcome}
               style={{
                 position: "absolute", left: 24, top: 24,
-                width: 72, height: 72, borderRadius: "50%",
+                width: 50, height: 50, borderRadius: "50%",
                 background: "rgba(255,255,255,.9)", border: "none", cursor: "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 boxShadow: "0 4px 16px rgba(0,0,0,.15)",
               }}
             >
-              <img src={A.back} alt="Retour" style={{ width: 38, height: 38, objectFit: "contain" }} />
+              <FiArrowLeftCircle size={30} color="rgba(0,0,0,.8)" />          
             </button>
 
             <div style={{ textAlign: "center" }}>
               <h1 style={{
-                fontSize: "clamp(28px,5vw,44px)", fontWeight: 700,
-                color: "#2A2A3E", textShadow: "0 2px 10px rgba(255,255,255,.9)",
-                marginBottom: 4,
+                fontSize: "clamp(20px,3vw,36px)", fontWeight: 700,
+                color: "#2A2A3E", textShadow: "0 2px 10px rgba(255,255,255,.9)"
               }}>
                 L'Atelier des Mots
               </h1>
               <p style={{
-                fontSize: "clamp(16px,2.5vw,24px)",
+                fontSize: "24px",
                 color: "#5A5A6E", fontWeight: 400,
               }}>
                 Choisis tes lettres !
@@ -534,7 +544,7 @@ export default function MaVoixMagique() {
                 transition: "background 300ms ease, box-shadow 300ms ease",
               }}
             >
-              <img src={A.mic} alt="Micro" style={{ width: 52, height: 52, objectFit: "contain" }} />
+              <FaMicrophone size={36} color={speaking ? "#fff3e0" : "#e0f7fa"} />
               <span style={{ fontSize: 15, fontWeight: 700, color: "#2A2A3E", fontFamily: "'Quicksand',sans-serif" }}>
                 {speaking ? "En cours…" : "Écouter"}
               </span>
@@ -544,7 +554,7 @@ export default function MaVoixMagique() {
             <div style={{
               display: "flex", flexWrap: "wrap", gap: 10,
               justifyContent: "center", alignItems: "center",
-              maxWidth: "92%", minHeight: 90,
+              maxWidth: "100%", minHeight: 90,
               padding: "12px 20px",
               background: "rgba(255,255,255,.55)",
               borderRadius: 24,
@@ -581,17 +591,17 @@ export default function MaVoixMagique() {
             <img src={A.platform} alt="" style={{
               position: "absolute", bottom: 0, left: "50%",
               transform: "translateX(-50%)",
-              width: "min(700px, 96vw)", height: "auto",
+              width: "min(600px, 80vw)", height: "auto",
               pointerEvents: "none", zIndex: 0, opacity: .9,
             }} />
 
             {/* Letter rows */}
             <div style={{
               position: "relative", zIndex: 2,
-              display: "flex", flexDirection: "column", gap: 6,
+              display: "flex", flexDirection: "column", gap: 3,
             }}>
               {ROWS.map((row, ri) => (
-                <div key={ri} style={{ display: "flex", gap: 6, justifyContent: "center" }}>
+                <div key={ri} style={{ display: "flex", gap: 3, justifyContent: "center" }}>
                   {row.map(l => (
                     <KeyOrb key={l} letter={l} onClick={() => addLetter(l)} />
                   ))}

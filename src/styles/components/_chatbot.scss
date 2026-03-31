@@ -43,3 +43,44 @@
         object-fit: cover;
     }
 }
+
+.chat-sidebar {
+  width: 300px;
+  height: 100%;
+  background: white;
+  transition: transform 0.3s ease;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .chat-sidebar {
+    position: relative;
+    transform: translateX(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .chat-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transform: translateX(-100%);
+  }
+
+  .chat-sidebar.show {
+    transform: translateX(0);
+  }
+}
+
+/* Overlay sombre */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 999;
+}
