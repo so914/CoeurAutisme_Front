@@ -1,16 +1,16 @@
 import React, { useState, useCallback } from 'react';
 import EmotionBar from './EmotionBar';
 import BadgeOverlay from './BadgeOverlay';
-import kouassiImg from '../images/characters/kouassi.jpg';
-import aminaImg from '../images/characters/amina.jpg';
-import eliasImg from '../images/characters/elias.jpg';
-import koffiImg from '../images/characters/koffi.jpg';
-import fatoumataImg from '../images/characters/fatoumata.jpg';
-import schoolIcon from '../images/icons/school.png';
-import marketIcon from '../images/icons/market.png';
-import churchIcon from '../images/icons/church.png';
-import transportIcon from '../images/icons/transport.png';
-import familyIcon from '../images/icons/family.png';
+const kouassiImg = '/images/characters/kouassi.jpg';
+const aminaImg = '/images/characters/amina.jpg';
+const eliasImg = '/images/characters/elias.jpg';
+const koffiImg = '/images/characters/koffi.jpg';
+const fatoumataImg = '/images/characters/fatoumata.jpg';
+const schoolIcon = '/images/icons/school.png';
+const marketIcon = '/images/icons/market.png';
+const churchIcon = '/images/icons/church.png';
+const transportIcon = '/images/icons/transport.png';
+const familyIcon = '/images/icons/family.png';
 
 
 const CHARACTERS = {

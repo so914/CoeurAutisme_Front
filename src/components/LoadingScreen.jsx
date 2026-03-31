@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import loadingImage from '../images/loading-image.png';
+const loadingImage = '/images/Gemini_Generated_Image_lk6g2qlk6g2qlk6g-removebg-preview.png';
 
 
 const LoadingScreen = ({ onComplete }) => {

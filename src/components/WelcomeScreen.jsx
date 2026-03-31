@@ -1,10 +1,11 @@
 import React from 'react';
-import loadingImage from '../images/loading-image.png';
-import schoolIcon from '../images/icons/school.png';
-import marketIcon from '../images/icons/market.png';
-import churchIcon from '../images/icons/church.png';
-import transportIcon from '../images/icons/transport.png';
-import familyIcon from '../images/icons/family.png';
+
+const loadingImage = '/images/Gemini_Generated_Image_lk6g2qlk6g2qlk6g-removebg-preview.png';
+const schoolIcon = '/images/icons/school.png';
+const marketIcon = '/images/icons/market.png';
+const churchIcon = '/images/icons/church.png';
+const transportIcon = '/images/icons/transport.png';
+const familyIcon = '/images/icons/family.png';
 
 
 const ENVIRONMENTS = {
